@@ -12,6 +12,13 @@ import {MatchDetailService} from './match-detail.service';
 export class MatchDetailComponent implements OnInit {
 
   matchId;
+  direScore;
+  radiantScore;
+  radiantWin;
+  startTime;
+  duration;
+  picksBans;
+  players;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,9 +33,27 @@ export class MatchDetailComponent implements OnInit {
     );
 
     this.matchDetailService.getMatchInfo(123).subscribe(
-      data => console.log(data),
+      data => 
+      {
+        this.matchId = data["match_id"];
+        this.direScore = data["dire_score"];
+        this.radiantScore = data["radiant_score"];
+        this.radiantWin = data["radiant_win"];
+        this.startTime = data["start_time"];
+        this.duration = data["duration"];
+        this.picksBans = data["picks_bans"];
+        this.players = data["players"];
+      },
       error=> console.log(error)
     )
+
+    this.loadMatchDeatils();
+    
+    
+  }
+  
+  
+  loadMatchDeatils(){
 
   }
 

@@ -12,7 +12,8 @@ import { HeroImagePipe } from './player-stats/hero-image.pipe';
 
 import { Routes, RouterModule } from '@angular/router';
 
-import {Constants} from './config/constants'
+import {Constants} from './config/constants';
+import { SecToMinPipe } from './pipes/sec-to-min.pipe'
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
@@ -25,7 +26,8 @@ const appRoutes:Routes = [
     AppComponent,
     PlayerStatsComponent,
     MatchDetailComponent,
-    HeroImagePipe
+    HeroImagePipe,
+    SecToMinPipe
   ],
   imports: [
     BrowserModule,

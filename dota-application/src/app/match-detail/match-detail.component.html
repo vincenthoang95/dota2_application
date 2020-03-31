@@ -1,2 +1,10 @@
 <p>match-detail works!</p>
 <h1>Match ID: {{matchId}}</h1>
+<div [ngSwitch]= "radiantWin">
+    <h1 *ngSwitchCase="true" id="radiantVictory">RADIANT VICTORY</h1>
+    <h1 *ngSwitchCase="false" id="direVictory">DIRE VICTORY</h1>
+    <div id = "matchStats">
+        <h1 id="radiantScore">{{radiantScore}}</h1><h1 id=duration> {{duration | secToMin}} </h1><h1 id="direScore">{{direScore}}</h1>
+    </div>
+</div>
+

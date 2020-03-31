@@ -1,0 +1,23 @@
+id, h1{
+    display: inline;
+}
+
+#radiantScore{
+    color: green;
+}
+
+#direScore{
+    color: red;
+}
+
+#duration{
+    color: darkgray;
+}
+
+#radiantVictory{
+    color: darkgreen;
+}
+
+#direVictory{
+    color: darkred;
+}
