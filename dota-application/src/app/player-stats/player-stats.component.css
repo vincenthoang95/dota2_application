@@ -1,0 +1,23 @@
+table, th, td{
+    border: 1px solid black;
+    text-align: center;
+}
+
+td{
+    padding: 10px;
+}
+/* td {
+    width: 20%;
+} */
+/* img{
+    width: 100%;
+    height: auto;
+} */
+
+#won {
+    color:green;
+}
+
+#lost{
+    color: red;
+}
