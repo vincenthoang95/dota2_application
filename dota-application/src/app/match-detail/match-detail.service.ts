@@ -15,6 +15,16 @@ export class MatchDetailService {
 
 
   getMatchInfo(matchId){
-    return this.http.get(this.constants.URL + "/testMatch")
+    return this.http.get(this.constants.URL + "/testMatch");
   }
+
+
+  getHeroStats(){
+    return this.http.get(this.constants.URL + "/testHerosStats");
+  }
+
+  getItemInfo(){
+    return this.http.get(this.constants.URL + "/getItemInfo");
+  }
+
 }
