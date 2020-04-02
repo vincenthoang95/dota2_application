@@ -1,4 +1,4 @@
-id, h1{
+#matchStats h1{
     display: inline;
 }
 
@@ -33,6 +33,7 @@ td{
 img{
     width: 60px;
     height: 40px;
+    /* filter: grayscale(80%); */
 }
 
 #item_slot td{
@@ -47,3 +48,40 @@ img{
     /* display: block; */
     /* vertical-align: bottom; */
 }
+
+.line {
+    position: relative;
+    z-index: 1;
+    left: -50%;
+    width: 300%;
+    height: 10px;
+    background-color: red;
+    -webkit-transform: rotate(-45deg); /* Safari and Chrome */
+        -ms-transform: rotate(-45deg); /* IE 9 */
+            transform: rotate(-45deg);
+  }
+
+.picksBans .picks, .picksBans .bans{
+    display: inline-block;
+  }
+
+.radiantPick{
+      background-color: green;
+      width: 59px;
+      height: 10px;
+  }
+
+.direPick{
+    background-color: red;
+    width: 59px;
+    height: 10px;
+  }
+
+.heroBan{
+    padding-right: 1px;
+    filter: grayscale(90%);
+  }
+
+.heroPick{
+      padding-right: 1px;
+  }

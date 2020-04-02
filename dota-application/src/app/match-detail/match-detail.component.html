@@ -8,18 +8,44 @@
         <h1 id="radiantScore">{{radiantScore}}</h1><h1 id=duration> {{duration | secToMin}} </h1><h1 id="direScore">{{direScore}}</h1>
     </div>
 </div>
-<table>
+
+
+<div class="picksBans">
+    <!-- <h1 class="pick" *ngFor = "let picks of picksBans">{{picks.hero_id}}</h1> -->
+    <h3>Picks:</h3>
+    <div class="picks" *ngFor= "let pick of picks">
+        <img class="heroPick" src="assets/dota_hero_image/{{getHeroImage(pick.hero_id)}}">
+        <div class="radiantPick" *ngIf="pick.team == 0"></div>
+        <div class="direPick" *ngIf="pick.team == 1"></div>
+    </div>
+    <h3>Bans:</h3>
+    <div class="bans" *ngFor="let ban of bans">
+        <img class="heroBan" src="assets/dota_hero_image/{{getHeroImage(ban.hero_id)}}">
+        <div class="radiantPick" *ngIf="ban.team == 0"></div>
+        <div class="direPick" *ngIf="ban.team == 1"></div>
+    </div>
+</div>
+
+
+<h3>Players:</h3>
+<table class>
     <th></th>
-    <th>Kills</th>
-    <th>Death</th>
-    <th>Assists</th>
+    <th>Player<br>Name</th>
+    <th>K</th>
+    <th>D</th>
+    <th>A</th>
+    <th>GPM</th>
+    <th>XPM</th>
     <th>Items</th>
 
     <tr *ngFor = "let player of players">
         <td><img src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></td>
+        <td>{{playerExists(player.personaname)}}</td>
         <td>{{player.hero_kills}}</td>
         <td>{{player.deaths}}</td>
         <td>{{player.assists}}</td>
+        <td>{{player.gold_per_min}}</td>
+        <td>{{player.xp_per_min}}</td>
         <div id = "item_slot">
             <td><img src="{{getItemImage(player.item_0)}}" onerror="this.style.display='none'"></td>
             <td><img src="{{getItemImage(player.item_1)}}" onerror="this.style.display='none'"></td>

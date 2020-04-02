@@ -25,6 +25,9 @@ export class MatchDetailComponent implements OnInit {
   itemIds;
   itemList;
 
+  picks;
+  bans;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -47,9 +50,13 @@ export class MatchDetailComponent implements OnInit {
         this.startTime = data["start_time"];
         this.duration = data["duration"];
         this.picksBans = data["picks_bans"];
+
+        this.picks = data["picks_bans"].slice(0,10);
+        this.bans = data["picks_bans"].slice(10,);
+
         this.players = data["players"];
       },
-      error=> console.log(error)
+      error=> console.log(error.status)
     )
 
     this.matchDetailService.getHeroStats().subscribe(
@@ -92,6 +99,13 @@ export class MatchDetailComponent implements OnInit {
     var img = this.itemList[itemName]["img"].split("/").pop().slice(0,-16);
     // console.log(img.replace("\\?t*=*[0-9]*",""));
     return "assets/dota_item_image/" + img;
+  }
+
+  playerExists(playerName){
+    if(playerName == null){
+      return "Anonymous";
+    }
+    return playerName;
   }
 
 }
