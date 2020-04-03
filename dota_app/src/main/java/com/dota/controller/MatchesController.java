@@ -61,6 +61,12 @@ public class MatchesController {
 	public String testAbilityId() {
 		return getJSONFile("src/main/resources/build/ability_ids.json");
 	}
+	
+	@GetMapping("/testAbilityList")
+	public String testAbilityList() {
+		return getJSONFile("src/main/resources/build/abilities.json");
+	}
+	
 	@GetMapping("/getItemInfo")
 	public String getItemInfo() {
 		JSONObject result = new JSONObject();

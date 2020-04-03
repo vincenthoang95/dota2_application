@@ -14,7 +14,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 import {Constants} from './config/constants';
 import { SecToMinPipe } from './pipes/sec-to-min.pipe';
-import { PlayerInfoComponent } from './match-detail/player-info/player-info.component'
+import { PlayerInfoComponent } from './match-detail/player-info/player-info.component';
+import { HeroAbilityBuildComponent } from './match-detail/hero-ability-build/hero-ability-build.component'
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
@@ -29,7 +30,8 @@ const appRoutes:Routes = [
     MatchDetailComponent,
     HeroImagePipe,
     SecToMinPipe,
-    PlayerInfoComponent
+    PlayerInfoComponent,
+    HeroAbilityBuildComponent
   ],
   imports: [
     BrowserModule,

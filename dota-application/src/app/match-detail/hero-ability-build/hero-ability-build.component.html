@@ -1,0 +1,10 @@
+<table>
+    <th>Hero</th>
+    <th *ngFor="let level of totalLevelList()">{{level}}</th>
+    
+    <tr *ngFor="let player of teamPlayers">
+        <td><img src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></td>
+        <td *ngFor="let abilityid of player.ability_upgrades_arr">{{abilityid}}</td>
+    </tr>
+
+</table>
