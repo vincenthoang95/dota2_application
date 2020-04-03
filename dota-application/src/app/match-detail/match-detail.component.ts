@@ -28,6 +28,9 @@ export class MatchDetailComponent implements OnInit {
   picks;
   bans;
 
+  radiantPlayers;
+  direPlayers;
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -49,12 +52,14 @@ export class MatchDetailComponent implements OnInit {
         this.radiantWin = data["radiant_win"];
         this.startTime = data["start_time"];
         this.duration = data["duration"];
+        
         this.picksBans = data["picks_bans"];
-
         this.picks = data["picks_bans"].slice(0,10);
         this.bans = data["picks_bans"].slice(10,);
 
         this.players = data["players"];
+        this.radiantPlayers = data["players"].slice(0,5);
+        this.direPlayers = data["players"].slice(5,10);
       },
       error=> console.log(error.status)
     )

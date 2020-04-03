@@ -27,44 +27,8 @@
 </div>
 
 
-<h3>Players:</h3>
-<table class>
-    <th></th>
-    <th>Player<br>Name</th>
-    <th>K</th>
-    <th>D</th>
-    <th>A</th>
-    <th>GPM</th>
-    <th>XPM</th>
-    <th>Items</th>
+<h3>Radiant Team</h3>
+<app-player-info [teamPlayers]="radiantPlayers"></app-player-info>
 
-    <tr *ngFor = "let player of players">
-        <td><img src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></td>
-        <td>{{playerExists(player.personaname)}}</td>
-        <td>{{player.hero_kills}}</td>
-        <td>{{player.deaths}}</td>
-        <td>{{player.assists}}</td>
-        <td>{{player.gold_per_min}}</td>
-        <td>{{player.xp_per_min}}</td>
-        <div id = "item_slot">
-            <td><img src="{{getItemImage(player.item_0)}}" onerror="this.style.display='none'"></td>
-            <td><img src="{{getItemImage(player.item_1)}}" onerror="this.style.display='none'"></td>
-            <td><img src="{{getItemImage(player.item_2)}}" onerror="this.style.display='none'"></td>
-
-            <td><img src="{{getItemImage(player.item_neutral)}}" onerror="this.style.display='none'"></td>
-        </div>
-        <div id = "item_slot">
-            <td><img src="{{getItemImage(player.item_3)}}" onerror="this.style.display='none'"></td>
-            <td><img src="{{getItemImage(player.item_4)}}" onerror="this.style.display='none'"></td>
-            <td><img src="{{getItemImage(player.item_5)}}" onerror="this.style.display='none'"></td>
-        </div>
-        <div id = "item_slot">
-            <td><img src="{{getItemImage(player.backpack_0)}}" onerror="this.style.display='none'"></td>
-            <td><img src="{{getItemImage(player.backpack_1)}}" onerror="this.style.display='none'"></td>
-            <td><img src="{{getItemImage(player.backpack_2)}}" onerror="this.style.display='none'"></td>
-        </div>
-        
-    
-    
-    </tr>
-</table>
+<h3>Dire Team</h3>
+<app-player-info [teamPlayers]="direPlayers"></app-player-info>

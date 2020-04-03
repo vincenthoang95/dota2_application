@@ -13,7 +13,8 @@ import { HeroImagePipe } from './player-stats/hero-image.pipe';
 import { Routes, RouterModule } from '@angular/router';
 
 import {Constants} from './config/constants';
-import { SecToMinPipe } from './pipes/sec-to-min.pipe'
+import { SecToMinPipe } from './pipes/sec-to-min.pipe';
+import { PlayerInfoComponent } from './match-detail/player-info/player-info.component'
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
@@ -27,7 +28,8 @@ const appRoutes:Routes = [
     PlayerStatsComponent,
     MatchDetailComponent,
     HeroImagePipe,
-    SecToMinPipe
+    SecToMinPipe,
+    PlayerInfoComponent
   ],
   imports: [
     BrowserModule,
