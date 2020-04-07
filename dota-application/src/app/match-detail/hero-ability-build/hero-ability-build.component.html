@@ -8,8 +8,8 @@
         <tr *ngFor="let player of teamPlayers">
             <td><img class="heroImg" src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></td>
             <!-- <td class="ability" *ngFor="let abilityId of sortAbilities(player.ability_upgrades_arr)">{{abilityId}}</td> -->
-            <!-- <td class="ability" *ngFor="let abilityId of player.ability_upgrades_arr"><img src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}"></td> -->
-            <td class="ability" *ngFor="let abilityId of sortAbilities(player.ability_upgrades_arr)"><img *ngIf="abilityId" src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}" ></td>
+            <td class="ability" *ngFor="let abilityId of player.ability_upgrades_arr|sortAbilityLevel"><img *ngIf="abilityId" src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}"></td>
+            <!-- <td class="ability" *ngFor="let abilityId of sortAbilities(player.ability_upgrades_arr)"><img *ngIf="abilityId" src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}" ></td> -->
             <!-- {{sortAbilities(player.ability_upgrades_arr)}} -->
         </tr>
     </ng-template>

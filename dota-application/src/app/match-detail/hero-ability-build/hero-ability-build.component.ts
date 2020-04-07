@@ -85,36 +85,6 @@ export class HeroAbilityBuildComponent implements OnInit {
       return abilityImg;
     }
   }
-
-  sortAbilities(abilityArray){
-    // var newArray = new Array();
-    // for(var abilityId of abilityArray ){
-    //   newArray.push(abilityId);
-    // }
-    // console.log(newArray);
-
-    var reverseList = abilityArray.reverse();
-    
-    var newArray = new Array();
-    var level = 0;
-    while(level < 25){
-
-      // if(reverseList.length === 0){
-      //   break;
-      // }
-
-      if([17,19,21,22,23,24].indexOf(level+1) !== -1){
-        newArray.push(undefined);
-      }
-      else{
-        newArray.push(reverseList.pop());
-      }
-      level++;
-    }
-    return newArray;
-    // console.log(newArray)
-  }
-
   
 
 }
