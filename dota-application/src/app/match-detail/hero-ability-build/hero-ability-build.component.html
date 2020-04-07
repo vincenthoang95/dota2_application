@@ -1,10 +1,17 @@
+
 <table>
     <th>Hero</th>
-    <th *ngFor="let level of totalLevelList()">{{level}}</th>
-    
-    <tr *ngFor="let player of teamPlayers">
-        <td><img src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></td>
-        <td *ngFor="let abilityid of player.ability_upgrades_arr">{{abilityid}}</td>
-    </tr>
+    <th class="abilityHeader" *ngFor="let level of totalLevelList()">{{level}}</th>
 
+    <tr *ngIf="!(initDone && initDone2); else display">loading...</tr>
+    <ng-template #display>
+        <tr *ngFor="let player of teamPlayers">
+            <td><img class="heroImg" src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></td>
+            <!-- <td class="ability" *ngFor="let abilityId of sortAbilities(player.ability_upgrades_arr)">{{abilityId}}</td> -->
+            <!-- <td class="ability" *ngFor="let abilityId of player.ability_upgrades_arr"><img src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}"></td> -->
+            <td class="ability" *ngFor="let abilityId of sortAbilities(player.ability_upgrades_arr)"><img *ngIf="abilityId" src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}" ></td>
+            <!-- {{sortAbilities(player.ability_upgrades_arr)}} -->
+        </tr>
+    </ng-template>
 </table>
+
