@@ -24,3 +24,11 @@ img{
     /* display: block; */
     /* vertical-align: bottom; */
 }
+
+.tooltip-feedback{
+    background-color: green;
+}
+
+.tooltip-feedback .tooltip-inner{
+    background-color: red;
+  }

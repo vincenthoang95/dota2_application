@@ -58,4 +58,9 @@ export class PlayerInfoComponent implements OnInit {
     return playerName;
   }
 
+  getItemDescription(itemId){
+    var itemName = this.itemIds[itemId];
+    return this.itemList[itemName];
+  }
+
 }

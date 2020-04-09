@@ -1,22 +1,38 @@
 <table>
     <th></th>
     <th>Player<br>Name</th>
-    <th>K</th>
-    <th>D</th>
-    <th>A</th>
-    <th>GPM</th>
-    <th>XPM</th>
+    <th><span title="Kills">K</span></th>
+    <th><span title="Deaths">D</span></th>
+    <th><span title="Assits">A</span></th>
+    <th><span title="Gold Per Minute">GPM</span></th>
+    <th><span title="Experience Per Minute">XPM</span></th>
     <th>Items</th>
 
     <tr *ngFor = "let player of teamPlayers">
-        <td><img src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></td>
+        <td><span [title]=heroStats[player.hero_id].localized_name><img src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></span><div>{{player.level}}</div></td>
         <td>{{playerExists(player.personaname)}}</td>
-        <td>{{player.hero_kills}}</td>
-        <td>{{player.deaths}}</td>
+        <td>
+            <ng-template #killsContent>
+                <div style="background-color: white;color: black;">
+                    <app-player-kill-death [player]="player.killed"></app-player-kill-death>
+                </div>
+            </ng-template>
+            <span [tooltip]="killsContent" content-type="template" tooltip-class="tooltip-feedback">{{player.hero_kills}}</span>
+        </td>
+        <!-- <td>{{player.deaths}}</td> -->
+        <td>
+            <ng-template #deathsContent>
+                <div style="background-color: white;color: black;">
+                    <app-player-kill-death [player]="player.killed_by"></app-player-kill-death>
+                </div>
+            </ng-template>
+            <span [tooltip]="deathsContent" content-type="template" tooltip-class="tooltip-feedback">{{player.deaths}}</span>
+        </td>
         <td>{{player.assists}}</td>
         <td>{{player.gold_per_min}}</td>
         <td>{{player.xp_per_min}}</td>
-        <div id = "item_slot">
+
+        <!-- <div id = "item_slot">
             <td><img src="{{getItemImage(player.item_0)}}" onerror="this.style.display='none'"></td>
             <td><img src="{{getItemImage(player.item_1)}}" onerror="this.style.display='none'"></td>
             <td><img src="{{getItemImage(player.item_2)}}" onerror="this.style.display='none'"></td>
@@ -32,6 +48,36 @@
             <td><img src="{{getItemImage(player.backpack_0)}}" onerror="this.style.display='none'"></td>
             <td><img src="{{getItemImage(player.backpack_1)}}" onerror="this.style.display='none'"></td>
             <td><img src="{{getItemImage(player.backpack_2)}}" onerror="this.style.display='none'"></td>
+        </div> -->
+
+        <div id="item_slot" *ngFor="let items of player|sortPlayerItem">
+            <td><span [tooltip]="column1Content" content-type="template" tooltip-class="tooltip-feedback"><img src="{{getItemImage(items[0])}}" *ngIf="items[0]"></span></td>
+            <td><span [tooltip]="column2Content" content-type="template" tooltip-class="tooltip-feedback"><img src="{{getItemImage(items[1])}}" *ngIf="items[1]"></span></td>
+            <td><span [tooltip]="column3Content" content-type="template" tooltip-class="tooltip-feedback"><img src="{{getItemImage(items[2])}}" *ngIf="items[2]"></span></td>
+            <td *ngIf="items.length > 3"><span [tooltip]="column4Content" content-type="template" tooltip-class="tooltip-feedback"><img src="{{getItemImage(items[3])}}" *ngIf="items[3]"></span></td>
+            <ng-template #column1Content>
+                <div style="background-color: white;color: black; padding: 5px;">
+                    {{getItemDescription(items[0]).dname}}
+                    <br>
+                    Cost: {{getItemDescription(items[0]).cost}}
+                </div>
+            </ng-template>
+            <ng-template #column2Content>
+                <div style="background-color: white;color: black;">
+                    {{getItemDescription(items[1]).dname}}
+                </div>
+            </ng-template>
+            <ng-template #column3Content>
+                <div style="background-color: white;color: black;">
+                    {{getItemDescription(items[2]).dname}}
+                </div>
+            </ng-template>
+            <ng-template #column4Content>
+                <div style="background-color: white;color: black;">
+                    {{getItemDescription(items[3]).dname}}
+                </div>
+            </ng-template>
         </div>
+
     </tr>
 </table>

@@ -18,6 +18,12 @@ import { PlayerInfoComponent } from './match-detail/player-info/player-info.comp
 import { HeroAbilityBuildComponent } from './match-detail/hero-ability-build/hero-ability-build.component';
 import { SortAbilityLevelPipe } from './pipes/sort-ability-level.pipe'
 
+
+import { TooltipModule, TooltipOptions  } from 'ng2-tooltip-directive';
+import { MyDefaultTooltipOptions } from './config/MyDefaultTooltipOptions';
+import { PlayerKillDeathComponent } from './match-detail/player-kill-death/player-kill-death.component';
+import { SortPlayerItemPipe } from './pipes/sort-player-item.pipe';
+
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
   {path: 'matches/:matchId', component:MatchDetailComponent},
@@ -33,12 +39,15 @@ const appRoutes:Routes = [
     SecToMinPipe,
     PlayerInfoComponent,
     HeroAbilityBuildComponent,
-    SortAbilityLevelPipe
+    SortAbilityLevelPipe,
+    PlayerKillDeathComponent,
+    SortPlayerItemPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions)
   ],
   providers: [PlayerStatsService, Constants],
   bootstrap: [AppComponent]

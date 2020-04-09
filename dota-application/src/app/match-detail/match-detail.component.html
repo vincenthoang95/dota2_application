@@ -14,13 +14,13 @@
     <!-- <h1 class="pick" *ngFor = "let picks of picksBans">{{picks.hero_id}}</h1> -->
     <h3>Picks:</h3>
     <div class="picks" *ngFor= "let pick of picks">
-        <img class="heroPick" src="assets/dota_hero_image/{{getHeroImage(pick.hero_id)}}">
+        <span [title]=heroStats[pick.hero_id].localized_name><img class="heroPick" src="assets/dota_hero_image/{{getHeroImage(pick.hero_id)}}"></span>
         <div class="radiantPick" *ngIf="pick.team == 0"></div>
         <div class="direPick" *ngIf="pick.team == 1"></div>
     </div>
     <h3>Bans:</h3>
     <div class="bans" *ngFor="let ban of bans">
-        <img class="heroBan" src="assets/dota_hero_image/{{getHeroImage(ban.hero_id)}}">
+        <span [title]=heroStats[ban.hero_id].localized_name><img class="heroBan" src="assets/dota_hero_image/{{getHeroImage(ban.hero_id)}}"></span>
         <div class="radiantPick" *ngIf="ban.team == 0"></div>
         <div class="direPick" *ngIf="ban.team == 1"></div>
     </div>
