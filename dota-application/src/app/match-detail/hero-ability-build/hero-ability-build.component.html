@@ -6,9 +6,17 @@
     <tr *ngIf="!(initDone && initDone2); else display">loading...</tr>
     <ng-template #display>
         <tr *ngFor="let player of teamPlayers">
-            <td><img class="heroImg" src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></td>
+            <td><span [title]="heroInfo[player.hero_id].localized_name"><img class="heroImg" src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></span></td>
             <!-- <td class="ability" *ngFor="let abilityId of sortAbilities(player.ability_upgrades_arr)">{{abilityId}}</td> -->
-            <td class="ability" *ngFor="let abilityId of player.ability_upgrades_arr|sortAbilityLevel"><img *ngIf="abilityId" src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}"></td>
+            <td class="ability" *ngFor="let abilityId of player.ability_upgrades_arr|sortAbilityLevel">
+                <span [tooltip]="abilityContent" content-type="template" tooltip-class="tooltip-feedback"><img *ngIf="abilityId" src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}"></span>
+
+                <ng-template #abilityContent>
+                    <div style="background-color: white;color: black; padding: 5px;">
+                        <app-ability-description [abilityId]="abilityId" [abilityIdList]="abilityIdList" [abilityList]="abilityList"></app-ability-description>
+                    </div>
+                </ng-template>
+            </td>
             <!-- <td class="ability" *ngFor="let abilityId of sortAbilities(player.ability_upgrades_arr)"><img *ngIf="abilityId" src="assets/dota_ability_image/{{getAbilityImage(abilityId)}}" ></td> -->
             <!-- {{sortAbilities(player.ability_upgrades_arr)}} -->
         </tr>

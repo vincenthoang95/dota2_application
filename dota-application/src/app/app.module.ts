@@ -24,6 +24,7 @@ import { MyDefaultTooltipOptions } from './config/MyDefaultTooltipOptions';
 import { PlayerKillDeathComponent } from './match-detail/player-kill-death/player-kill-death.component';
 import { SortPlayerItemPipe } from './pipes/sort-player-item.pipe';
 import { ItemDescriptionComponent } from './match-detail/item-description/item-description.component';
+import { AbilityDescriptionComponent } from './match-detail/ability-description/ability-description.component';
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
@@ -43,7 +44,8 @@ const appRoutes:Routes = [
     SortAbilityLevelPipe,
     PlayerKillDeathComponent,
     SortPlayerItemPipe,
-    ItemDescriptionComponent
+    ItemDescriptionComponent,
+    AbilityDescriptionComponent
   ],
   imports: [
     BrowserModule,
