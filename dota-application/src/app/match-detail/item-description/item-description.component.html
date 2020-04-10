@@ -1,3 +1,4 @@
-{{getItemDescription(itemId).dname}}
-<br>
-Cost: {{getItemDescription(itemId).cost}}
+<b>{{itemInfo.dname}}</b>
+<div *ngIf="itemInfo.cost">Cost: {{itemInfo.cost}}</div>
+<div *ngIf="itemInfo.mc">Mana Cost: {{itemInfo.mc}}</div>
+<div *ngIf="itemInfo.cd">Cooldown: {{itemInfo.cd}}</div>

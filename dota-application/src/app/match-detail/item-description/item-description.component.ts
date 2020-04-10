@@ -12,14 +12,14 @@ export class ItemDescriptionComponent implements OnInit {
 
   @Input() itemId;
 
+  itemInfo;
+
   constructor() { }
 
   ngOnInit() {
+    var itemName = this.itemIds[this.itemId];
+    this.itemInfo = this.itemList[itemName];
   }
 
-  getItemDescription(itemId){
-    var itemName = this.itemIds[itemId];
-    return this.itemList[itemName];
-  }
 
 }
