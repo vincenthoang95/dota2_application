@@ -23,6 +23,7 @@ import { TooltipModule, TooltipOptions  } from 'ng2-tooltip-directive';
 import { MyDefaultTooltipOptions } from './config/MyDefaultTooltipOptions';
 import { PlayerKillDeathComponent } from './match-detail/player-kill-death/player-kill-death.component';
 import { SortPlayerItemPipe } from './pipes/sort-player-item.pipe';
+import { ItemDescriptionComponent } from './match-detail/item-description/item-description.component';
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
@@ -41,7 +42,8 @@ const appRoutes:Routes = [
     HeroAbilityBuildComponent,
     SortAbilityLevelPipe,
     PlayerKillDeathComponent,
-    SortPlayerItemPipe
+    SortPlayerItemPipe,
+    ItemDescriptionComponent
   ],
   imports: [
     BrowserModule,
