@@ -17,15 +17,21 @@ export class PlayerStatsComponent implements OnInit {
     ){}
 
   ngOnInit() {
+    // this.playerStatsService.getRecentMatches().subscribe(
+    //   data=>this.recentMatches = data,
+    //   error=>console.log(error)
+    // )
+
+    
   }
-
-
+  
+  // recentMatches
+  recentMatches = JSON.parse(this.playerStatsService.getRecentMatches());
 
   showRecentMatches = true;
   showMatchDetail = false;
   matchId;
 
-  recentMatches = JSON.parse(this.playerStatsService.getRecentMatches());
   heroInfo = JSON.parse(this.playerStatsService.getHeroInfo());
 
   check(){

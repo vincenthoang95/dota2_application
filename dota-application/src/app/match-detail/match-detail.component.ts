@@ -43,7 +43,7 @@ export class MatchDetailComponent implements OnInit {
       }
     );
 
-    this.matchDetailService.getMatchInfo(123).subscribe(
+    this.matchDetailService.getMatchInfo(this.matchId).subscribe(
       data => 
       {
         this.matchId = data["match_id"];

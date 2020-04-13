@@ -9,6 +9,7 @@ export class PlayerStatsService {
 
   getRecentMatches(){
     return this.heroList;
+    // return this.http.get("http://localhost:8080/recentMatches")
   }
 
   getHeroInfo(){
