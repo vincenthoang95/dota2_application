@@ -25,11 +25,13 @@ import { PlayerKillDeathComponent } from './match-detail/player-kill-death/playe
 import { SortPlayerItemPipe } from './pipes/sort-player-item.pipe';
 import { ItemDescriptionComponent } from './match-detail/item-description/item-description.component';
 import { AbilityDescriptionComponent } from './match-detail/ability-description/ability-description.component';
+import { HeroesComponent } from './heroes/heroes.component';
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
   {path: 'matches/:matchId', component:MatchDetailComponent},
-  {path: 'player', component:PlayerStatsComponent}
+  {path: 'player', component:PlayerStatsComponent},
+  {path: 'heroes', component:HeroesComponent}
 ]
 
 @NgModule({
@@ -45,7 +47,8 @@ const appRoutes:Routes = [
     PlayerKillDeathComponent,
     SortPlayerItemPipe,
     ItemDescriptionComponent,
-    AbilityDescriptionComponent
+    AbilityDescriptionComponent,
+    HeroesComponent
   ],
   imports: [
     BrowserModule,
