@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ConstantsService } from '../common-services/constants.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-heroes',
@@ -10,18 +11,25 @@ export class HeroesComponent implements OnInit {
 
 
   heroList=[];
+  heroAbilitiesList;
 
   strHeroes=[];
   agiHeroes=[];
   intHeroes=[];
 
+  showHero=false;
+
+  heroInfo;
+  heroAbilities;
+
 
   constructor(
-    private constantService: ConstantsService
+    private constantService: ConstantsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.constantService.getHeroStats().subscribe(
+    this.constantService.getHeroesList().subscribe(
       data=>{
         // this.heroStats = Object.keys(data).map(i => data[i])
         for(let key of Object.keys(data)){
@@ -42,11 +50,28 @@ export class HeroesComponent implements OnInit {
       }
       )
       
-      this.sortHeroes();
+    this.constantService.getHeroesAbilityList().subscribe(
+      data=>this.heroAbilitiesList = data,
+      error=>console.log(error)
+    )
 
   }
 
-  sortHeroes(){
+
+  getHeroImage(imgPath){
+    return imgPath.split("/").pop();
+  }
+
+  toggleDisplayHero(heroInfo){
+    this.showHero = true;
+    // this.heroId = heroId
+    this.heroInfo = heroInfo;
+    this.heroAbilities = this.heroAbilitiesList[heroInfo.name];
+  }
+
+  toggleHeroDisplay(heroId){
+    this.router.navigate(['/heroes',heroId]);
+
   }
 
 }

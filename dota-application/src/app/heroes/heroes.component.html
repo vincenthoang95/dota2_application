@@ -1,15 +1,21 @@
 <h1>Strength Heroes</h1>
-<div *ngFor="let hero of strHeroes">
-    {{hero.localized_name}}
+<div>
+    <img *ngFor="let strHero of strHeroes" (click)="toggleDisplayHero(strHero)" [title]="strHero.localized_name" src="assets/dota_hero_image/{{getHeroImage(strHero.img)}}">
 </div>
 
 <h1>Agility Heroes</h1>
-<div *ngFor="let hero of agiHeroes">
-    {{hero.localized_name}}
+<div>
+    <img *ngFor="let agiHero of agiHeroes" (click)="toggleDisplayHero(agiHero)" [title]="agiHero.localized_name" src="assets/dota_hero_image/{{getHeroImage(agiHero.img)}}">
 </div>
-
+        
 <h1>Intelligence Heroes</h1>
-<div *ngFor="let hero of intHeroes">
-    {{hero.localized_name}}
+<div>
+    <img *ngFor="let intHero of intHeroes" (click)="toggleDisplayHero(intHero)" [title]="intHero.localized_name" src="assets/dota_hero_image/{{getHeroImage(intHero.img)}}">
 </div>
 
+<div *ngIf="showHero">
+    <app-hero-detail [heroInfo]="heroInfo" [heroAbilities]="heroAbilities"></app-hero-detail>
+</div>
+
+<!-- <a (click)="toggleHeroDisplay(1)">click here!</a>
+<router-outlet></router-outlet> -->

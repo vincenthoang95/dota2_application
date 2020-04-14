@@ -12,7 +12,15 @@ export class ConstantsService {
     private constants: Constants
   ) {}
 
-  getHeroStats(){
+  getHeroesList(){
     return this.http.get(this.constants.URL + "/testHerosStats");
+  }
+
+  getHeroesAbilityList(){
+    return this.http.get(this.constants.URL + "/getHeroesAbilitiesList");
+  }
+
+  getAbilitiesList(){
+    return this.http.get(this.constants.URL + "/testAbilityList");
   }
 }

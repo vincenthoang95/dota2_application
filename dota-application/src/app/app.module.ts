@@ -26,12 +26,15 @@ import { SortPlayerItemPipe } from './pipes/sort-player-item.pipe';
 import { ItemDescriptionComponent } from './match-detail/item-description/item-description.component';
 import { AbilityDescriptionComponent } from './match-detail/ability-description/ability-description.component';
 import { HeroesComponent } from './heroes/heroes.component';
+import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
   {path: 'matches/:matchId', component:MatchDetailComponent},
   {path: 'player', component:PlayerStatsComponent},
-  {path: 'heroes', component:HeroesComponent}
+  {path: 'heroes', component:HeroesComponent},
+  // {path: 'heroes/:heroId', component:HeroesComponent},
+  // {path: 'heroes/:heroId', component:HeroDetailComponent}
 ]
 
 @NgModule({
@@ -48,7 +51,8 @@ const appRoutes:Routes = [
     SortPlayerItemPipe,
     ItemDescriptionComponent,
     AbilityDescriptionComponent,
-    HeroesComponent
+    HeroesComponent,
+    HeroDetailComponent
   ],
   imports: [
     BrowserModule,
