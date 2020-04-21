@@ -23,4 +23,8 @@ export class ConstantsService {
   getAbilitiesList(){
     return this.http.get(this.constants.URL + "/testAbilityList");
   }
+  
+  getItemInfo(){
+    return this.http.get(this.constants.URL + "/getItemInfo");
+  }
 }

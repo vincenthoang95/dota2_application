@@ -27,6 +27,7 @@ import { ItemDescriptionComponent } from './match-detail/item-description/item-d
 import { AbilityDescriptionComponent } from './match-detail/ability-description/ability-description.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
+import { ItemsComponent } from './items/items.component';
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
@@ -35,6 +36,7 @@ const appRoutes:Routes = [
   {path: 'heroes', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroDetailComponent}
+  {path: 'items', component:ItemsComponent}
 ]
 
 @NgModule({
@@ -52,7 +54,8 @@ const appRoutes:Routes = [
     ItemDescriptionComponent,
     AbilityDescriptionComponent,
     HeroesComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    ItemsComponent
   ],
   imports: [
     BrowserModule,

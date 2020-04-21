@@ -1,0 +1,14 @@
+<p>items works!</p>
+<h1>consumables?</h1>
+<div *ngFor="let item of itemsList">
+    <span *ngIf="item.qual === 'consumable' && item.components === null">
+        {{item.dname}} {{item.qual}}
+    </span>
+</div>
+
+<h1>attributes?</h1>
+<div *ngFor="let item of itemsList">
+    <span *ngIf="item.qual === 'component' && item.components === null">
+        {{item.dname}} {{item.qual}} <img src="assets/dota_item_image/{{imgName(item.img)}}">
+    </span>
+</div>

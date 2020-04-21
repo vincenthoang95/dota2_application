@@ -36,7 +36,6 @@ export class PlayerStatsComponent implements OnInit {
 
   check(){
     this.recentMatches.forEach(matches => {
-      console.log(matches.heroName)
     });
   }
 
