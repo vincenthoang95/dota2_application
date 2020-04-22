@@ -1,0 +1,23 @@
+<table>
+    <th>Hero</th>
+    <th>Match Played</th>
+    <th>Win %</th>
+    <th>Played With</th>
+    <th>Wins With %</th>
+    <th>Played Against</th>
+    <th>Win Against %</th>
+
+    <tr *ngFor="let hero of playerHeroesStats | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <td><span [title]=hero.localized_name><img src="assets/dota_hero_image/{{heroImage(hero.hero_id)}}"></span></td>
+        <td>{{hero.games}}</td>
+        <td>{{hero.win/hero.games |percent:'2.1'}}</td>
+        <td>{{hero.with_games}}</td>
+        <td>{{hero.with_win/hero.with_games |percent:'2.1'}}</td>
+        <td>{{hero.against_games}}</td>
+        <td>{{hero.against_win/hero.against_games |percent:'2.1'}}</td>
+    </tr>
+
+</table>
+<button (click)="pageSize=10">Change to 10</button>
+<button (click)="pageSize=20">change to 20</button>
+<ngb-pagination [collectionSize]="playerHeroesStats.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>

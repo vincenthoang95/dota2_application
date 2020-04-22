@@ -28,6 +28,9 @@ import { AbilityDescriptionComponent } from './match-detail/ability-description/
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
 import { ItemsComponent } from './items/items.component';
+import { PlayerHeroesComponent } from './player-heroes/player-heroes.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
@@ -36,7 +39,8 @@ const appRoutes:Routes = [
   {path: 'heroes', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroDetailComponent}
-  {path: 'items', component:ItemsComponent}
+  {path: 'items', component:ItemsComponent},
+  {path: 'player/heroes', component:PlayerHeroesComponent}
 ]
 
 @NgModule({
@@ -55,13 +59,15 @@ const appRoutes:Routes = [
     AbilityDescriptionComponent,
     HeroesComponent,
     HeroDetailComponent,
-    ItemsComponent
+    ItemsComponent,
+    PlayerHeroesComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions)
+    TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions),
+    NgbModule
   ],
   providers: [PlayerStatsService, Constants],
   bootstrap: [AppComponent]
