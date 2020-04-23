@@ -1,4 +1,4 @@
-<table>
+<!-- <table>
     <th>Hero</th>
     <th>Match Played</th>
     <th>Win %</th>
@@ -6,7 +6,7 @@
     <th>Wins With %</th>
     <th>Played Against</th>
     <th>Win Against %</th>
-
+    
     <tr *ngFor="let hero of playerHeroesStats | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
         <td><span [title]=hero.localized_name><img src="assets/dota_hero_image/{{heroImage(hero.hero_id)}}"></span></td>
         <td>{{hero.games}}</td>
@@ -16,8 +16,33 @@
         <td>{{hero.against_games}}</td>
         <td>{{hero.against_win/hero.against_games |percent:'2.1'}}</td>
     </tr>
-
+    
 </table>
 <button (click)="pageSize=10">Change to 10</button>
 <button (click)="pageSize=20">change to 20</button>
+<ngb-pagination [collectionSize]="playerHeroesStats.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination> -->
+
+<table matSort (matSortChange)="sortData($event)">
+    <tr>
+        <th>Hero</th>
+        <th mat-sort-header="matchPlayed">Match Played</th>
+        <th mat-sort-header="winPercent">Win %</th>
+        <th mat-sort-header="playedWith">Played With</th>
+        <th mat-sort-header="winWith">Win With %</th>
+        <th mat-sort-header="playedAgainst">Played Against</th>
+        <th mat-sort-header="winAgainst">Win Against %</th>
+    </tr>
+    
+    <tr *ngFor="let hero of sortedData | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
+        <td><span [title]=getHeroName(hero.hero_id)><img src="assets/dota_hero_image/{{heroImage(hero.hero_id)}}"></span></td>
+        <td>{{hero.matched_played}}</td>
+        <td>{{hero.win |percent:'2.1'}}</td>
+        <td>{{hero.played_with}}</td>
+        <td>{{hero.win_with |percent:'2.1'}}</td>
+        <td>{{hero.played_against}}</td>
+        <td>{{hero.win_against |percent:'2.1'}}</td>
+    </tr>
+</table>
+<button (click)="pageSize=10">Page Limit: 10</button>
+<button (click)="pageSize=20">Page Limit: 20</button>
 <ngb-pagination [collectionSize]="playerHeroesStats.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>

@@ -32,6 +32,11 @@ import { PlayerHeroesComponent } from './player-heroes/player-heroes.component';
 
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+import {MatSortModule} from '@angular/material/sort';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select'
+
+
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
   {path: 'matches/:matchId', component:MatchDetailComponent},
@@ -67,7 +72,11 @@ const appRoutes:Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions),
-    NgbModule
+    NgbModule,
+    MatSortModule,
+    BrowserAnimationsModule,
+    MatSelectModule
+    
   ],
   providers: [PlayerStatsService, Constants],
   bootstrap: [AppComponent]
