@@ -35,6 +35,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatSortModule} from '@angular/material/sort';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select'
+import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material';
 
 
 const appRoutes:Routes = [
@@ -75,7 +77,9 @@ const appRoutes:Routes = [
     NgbModule,
     MatSortModule,
     BrowserAnimationsModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule,
+    MatInputModule
     
   ],
   providers: [PlayerStatsService, Constants],

@@ -1,26 +1,31 @@
-<!-- <table>
-    <th>Hero</th>
-    <th>Match Played</th>
-    <th>Win %</th>
-    <th>Played With</th>
-    <th>Wins With %</th>
-    <th>Played Against</th>
-    <th>Win Against %</th>
-    
-    <tr *ngFor="let hero of playerHeroesStats | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize">
-        <td><span [title]=hero.localized_name><img src="assets/dota_hero_image/{{heroImage(hero.hero_id)}}"></span></td>
-        <td>{{hero.games}}</td>
-        <td>{{hero.win/hero.games |percent:'2.1'}}</td>
-        <td>{{hero.with_games}}</td>
-        <td>{{hero.with_win/hero.with_games |percent:'2.1'}}</td>
-        <td>{{hero.against_games}}</td>
-        <td>{{hero.against_win/hero.against_games |percent:'2.1'}}</td>
-    </tr>
-    
-</table>
-<button (click)="pageSize=10">Change to 10</button>
-<button (click)="pageSize=20">change to 20</button>
-<ngb-pagination [collectionSize]="playerHeroesStats.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination> -->
+<button (click)="displayFilter()">Show Filter</button>
+<div *ngIf="showFilter">
+    <form>
+        Date
+        <select (change)="date($event.target.value)">
+            <option value="none">None</option>
+            <option value="option1">1 WEEK</option>
+            <option value="option2">1 MONTH</option>
+            <option value="option3">1 YEAR</option>
+        </select>
+        Patch
+        <select #selectPatch (change)="patch(selectPatch.value)">
+            <option value="none">None</option>
+            <option *ngFor="let patch of patchInfo" [value]="patch.id">
+                {{patch.name}}
+            </option>
+        </select>
+        Region
+        <select id='selectRegion' #selectRegion (change)="region(selectRegion.value)">
+            <option value="none">None</option>
+            <option *ngFor="let region of regionsList" [value]="region[0]">
+                {{region[1]}}
+            </option>
+        </select>
+    </form>
+</div>
+
+<br>
 
 <table matSort (matSortChange)="sortData($event)">
     <tr>
@@ -43,6 +48,11 @@
         <td>{{hero.win_against |percent:'2.1'}}</td>
     </tr>
 </table>
-<button (click)="pageSize=10">Page Limit: 10</button>
-<button (click)="pageSize=20">Page Limit: 20</button>
+<!-- <div>
+    {{(page-1) * pageSize + 1 }}-{{(page-1) * pageSize + pageSize}}
+</div> -->
+<div>
+    <button (click)="pageSize=10">Page Limit: 10</button>
+    <button (click)="pageSize=20">Page Limit: 20</button>
+</div>
 <ngb-pagination [collectionSize]="playerHeroesStats.length" [(page)]="page" [pageSize]="pageSize" [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
