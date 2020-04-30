@@ -34,7 +34,7 @@ export class PlayerHeroesComponent implements OnInit {
   regions=JSON.parse('{"1":"US WEST","2":"US EAST","3":"EUROPE","5":"SINGAPORE","6":"DUBAI","7":"AUSTRALIA","8":"STOCKHOLM","9":"AUSTRIA","10":"BRAZIL","11":"SOUTHAFRICA","12":"PW TELECOM SHANGHAI","13":"PW UNICOM","14":"CHILE","15":"PERU","16":"INDIA","17":"PW TELECOM GUANGDONG","18":"PW TELECOM ZHEJIANG","19":"JAPAN","20":"PW TELECOM WUHAN","25":"PW UNICOM TIANJIN","37":"TAIWAN"}');
   regionsList = Object.entries(this.regions);
 
-
+  displayHeroes = false;
 
   constructor(
     private constantService:ConstantsService,
@@ -43,25 +43,37 @@ export class PlayerHeroesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.route.queryParams.subscribe(params => {
-    //   this.selectedValue = params['date'];
-    // });
-
-    this.playerHeroesStats = JSON.parse(this.constantService.getPlayerHeroes());
-    for(let hero of this.playerHeroesStats){
-      var tempData:any = {};
-      tempData.hero_id = hero.hero_id;
-      tempData.matched_played = hero.games;
-      let win = hero.win/hero.games;
-      tempData.win = ((win >= 0) ? win : 0);
-      tempData.played_with = hero.with_games;
-      tempData.win_with = hero.with_win/hero.with_games;
-      tempData.played_against = hero.against_games;
-      tempData.win_against = hero.against_win/hero.against_games;
-      this.displayData.push(tempData);
-    }
-    // console.log(this.displayData);
-    this.sortedData = this.displayData;
+    this.route.queryParams.subscribe(params => {
+      this.displayHeroes = false;
+      // this.playerHeroesStats = JSON.parse(this.constantService.getFilterPlayerHeroesPlayed(params['date'], params['patch'], params['region']));
+      this.constantService.getFilterPlayerHeroesPlayed(params['date'], params['patch'], params['region']).subscribe(
+        data => {
+          this.playerHeroesStats = data;
+          this.displayData = [];
+          for(let hero of this.playerHeroesStats){
+            var tempData:any = {};
+            tempData.hero_id = hero.hero_id;
+            tempData.matched_played = hero.games;
+            let win = hero.win/hero.games;
+            tempData.win = ((win >= 0) ? win : 0);
+            tempData.played_with = hero.with_games;
+            let win_with = hero.with_win/hero.with_games;
+            tempData.win_with = ((win_with >= 0 ? win_with : 0));
+            tempData.played_against = hero.against_games;
+            let win_against = hero.against_win/hero.against_games;
+            tempData.win_against = ((win_against >= 0) ? win_against : 0);
+            this.displayData.push(tempData);
+          }
+          // console.log("this is the display data ", this.displayData);
+          this.sortedData = this.displayData;
+          this.displayHeroes = true;
+        },
+        error => console.log(error)
+      )
+      // console.log("reading route", this.playerHeroesStats);
+    });
+    // this.playerHeroesStats = JSON.parse(this.constantService.getPlayerHeroes());
+    
     
     this.constantService.getHeroesList().subscribe(
       data=> {
@@ -136,21 +148,21 @@ export class PlayerHeroesComponent implements OnInit {
     }
   }
 
-  patch(id: any): void {
-    if(id === 'none'){
+  patch(value: any): void {
+    if(value === 'none'){
       this.router.navigate([], {relativeTo:this.route, queryParams: { patch: null }, queryParamsHandling: 'merge' });
     }
     else{
-      this.router.navigate([], {relativeTo:this.route, queryParams: { patch: id }, queryParamsHandling: 'merge' });
+      this.router.navigate([], {relativeTo:this.route, queryParams: { patch: value }, queryParamsHandling: 'merge' });
     }
   }
 
-  region(id: any){
-    if(id === 'none'){
+  region(value: any){
+    if(value === 'none'){
       this.router.navigate([], {relativeTo:this.route, queryParams: { region: null }, queryParamsHandling: 'merge' });
     }
     else{
-      this.router.navigate([], {relativeTo:this.route, queryParams: { region: id }, queryParamsHandling: 'merge' });
+      this.router.navigate([], {relativeTo:this.route, queryParams: { region: value }, queryParamsHandling: 'merge' });
     }
   }
 

@@ -2,6 +2,7 @@ package com.dota.controller;
 
 import java.util.Optional;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,9 +27,10 @@ public class PlayerController {
 			@RequestParam(required = false) Optional<Integer> patch,
 			@RequestParam(required = false) Optional<Integer> region		
 			) {
-		
-		
-		return openDotaAPIUtils.filterPlayerHeroesPlayed(accountId, date.orElse(0), patch.orElse(0), region.orElse(0));
+//		System.out.println(date.orElse(0) + "  " + patch.orElse(0) + "  " + region.orElse(0));
+//		return date.orElse(0) + "  " + patch.orElse(0) + "  " + region.orElse(0);
+		JSONArray filteredPlayerHeroes = new JSONArray(openDotaAPIUtils.filterPlayerHeroesPlayed(accountId, date.orElse(0), patch.orElse(0), region.orElse(0)));
+		return filteredPlayerHeroes.toString();
 		
 //		JSONObject playerResponse = new JSONObject(openDotaAPIUtils.filterPlayerHeroesPlayed(accountId, date, patch, region));
 //		return "";
