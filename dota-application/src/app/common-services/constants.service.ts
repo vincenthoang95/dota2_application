@@ -50,5 +50,9 @@ export class ConstantsService {
   }
 
 
+  getPlayerMatches(){
+    return this.http.get(this.constants.URL + "/player/93102567/matches");
+  }
+
 
 }

@@ -1,0 +1,26 @@
+<p>player-activity works!</p>
+<h1>{{time*1000|date}}</h1>
+<h1>{{checkDate(time*1000|date)}}</h1>
+
+<svg height="16" width="16">
+    <circle cx="8" cy="8" r="8" fill="rgb(255,0,0)" />
+</svg> 
+<br>
+<svg height="16" width="16">
+    <circle cx="8" cy="8" [attr.r]="getRadius()" [attr.fill]="getColor()"/>
+</svg> 
+
+<div>
+    <div style="display: inline-block; padding: 2px; background-color: gray; margin: 2px;">
+        <div>abc</div>
+        <div>abc</div>
+        <div>abc</div>
+        <div>abc</div>
+    </div>
+    <div style="display: inline-block; padding: 2px; background-color: greenyellow; margin: 2px;">
+        <div>lol</div>
+        <div>lol</div>
+        <div>lol</div>
+        <div>lol</div>
+    </div>
+</div>

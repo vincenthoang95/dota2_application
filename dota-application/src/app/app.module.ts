@@ -37,6 +37,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSelectModule} from '@angular/material/select'
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material';
+import { PlayerActivityComponent } from './player-activity/player-activity.component';
 
 
 const appRoutes:Routes = [
@@ -47,7 +48,8 @@ const appRoutes:Routes = [
   // {path: 'heroes/:heroId', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroDetailComponent}
   {path: 'items', component:ItemsComponent},
-  {path: 'player/heroes', component:PlayerHeroesComponent}
+  {path: 'player/heroes', component:PlayerHeroesComponent},
+  {path: 'player/activity', component:PlayerActivityComponent}
 ]
 
 @NgModule({
@@ -67,7 +69,8 @@ const appRoutes:Routes = [
     HeroesComponent,
     HeroDetailComponent,
     ItemsComponent,
-    PlayerHeroesComponent
+    PlayerHeroesComponent,
+    PlayerActivityComponent
   ],
   imports: [
     BrowserModule,
