@@ -30,7 +30,7 @@
     </div>
 </div>
 
-<div class="scrolling-wrapper">
+<!-- <div class="scrolling-wrapper">
     <div style="display: inline-block; padding: 2px; margin: 2px;">
         <div>Sun</div>
         <div>Mon</div>
@@ -45,10 +45,11 @@
             <div *ngFor="let day of i.value">{{displayDay(day)}}</div>
         </div>
     </div>
-</div>
+</div> -->
 
-<div class="scrolling-wrapper">
+<div class="scrolling-wrapper" *ngFor="let year of weekLayoutByYear">
     <div style="display: inline-block; padding: 2px; margin: 2px;">
+        <div><b>{{year[0][0] | date:'yyyy'}}</b></div>
         <div>Sun</div>
         <div>Mon</div>
         <div>Tues</div>
@@ -57,12 +58,12 @@
         <div>Fri</div>
         <div>Sat</div>
     </div>
-    <div *ngFor="let week of weekLayout2d" style="display: inline-block; margin: 2px;" class="col">
+    <div *ngFor="let week of year" style="display: inline-block; margin: 2px;" class="col">
         <div *ngFor="let day of week">
-            {{displayDay(day)}}
-            <!-- <svg height="16" width="16">
-                <circle cx="8" cy="8" [attr.r]="getRadius()" [attr.fill]="getColor()"/>
-            </svg>  -->
+            <!-- {{displayDay(day)}} -->
+            <svg height="12" width="12">
+                <circle cx="6" cy="6.2" [attr.r]="getRadius(day)" [attr.fill]="getColor(day)"/>
+            </svg> 
         </div>
     </div>
 </div>

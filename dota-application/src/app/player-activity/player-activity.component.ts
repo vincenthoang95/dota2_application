@@ -22,6 +22,7 @@ export class PlayerActivityComponent implements OnInit {
   weekLayout = [];
   // weekLayout = {};
   weekLayout2d = [];
+  weekLayoutByYear = [];
 
   constructor(private constantService:ConstantsService) { }
 
@@ -71,7 +72,7 @@ export class PlayerActivityComponent implements OnInit {
     console.log('after    ' + newDate);
 
     let testDate = new Date();
-    testDate.setFullYear(2020);
+    testDate.setFullYear(2012);
     testDate.setMonth(0);
     testDate.setDate(1);
     console.log(testDate);
@@ -79,12 +80,40 @@ export class PlayerActivityComponent implements OnInit {
 
     let weekList = [];
     let weekNum = 1;
+    let nextYear = testDate.getFullYear() + 1;
     while(true){
-      if(testDate.getFullYear() == 2021){
+      // console.log(testDate);
+      if(testDate.getFullYear() == nextYear){
         // this.weekLayout[weekNum] = weekList;
+
+        let weekListSize = weekList.length;
+        if(!weekList[0]){
+          
+        }
+        else if(weekListSize != 7){
+          while(weekListSize != 7){
+            weekList.push(0);
+            weekListSize++;
+          }
+        }
+
         this.weekLayout.push({weekNum:weekList});
         this.weekLayout2d.push(weekList);
-        break;
+
+        this.weekLayoutByYear.push(this.weekLayout2d);
+        this.weekLayout2d = [];
+        
+        // testDate.setFullYear(nextYear);
+        // testDate.setMonth(0);
+        // testDate.setDate(1);
+        
+        nextYear++;
+
+        weekList = [];
+
+        // console.log(this.weekLayoutByYear);
+        continue;
+        // break;
       }
 
       switch(testDate.getDay()){
@@ -116,6 +145,10 @@ export class PlayerActivityComponent implements OnInit {
         // this.weekLayout[weekNum] = weekList;
         this.weekLayout.push({weekNum:weekList});
         this.weekLayout2d.push(weekList);
+        
+        this.weekLayoutByYear.push(this.weekLayout2d);
+        this.weekLayout2d = [];
+
         }
 
         break;
@@ -125,7 +158,9 @@ export class PlayerActivityComponent implements OnInit {
       testDate.setDate(testDate.getDate()+1);
 
     }
-    console.log(this.weekLayout)
+    console.log(this.weekLayout);
+    console.log(this.weekLayout2d);
+    console.log(this.weekLayoutByYear);
 
     // for(let i of this.weekLayout){
     //   console.log(i);
@@ -148,14 +183,56 @@ export class PlayerActivityComponent implements OnInit {
   }
 
 
-  getColor(){
+  getColor(day){
+    var date = new Date(day);
+    var wins = 0;
+    var losts = 0;
+
+    for(let match of this.allPlayerMatches){
+      let matchDate = new Date(match.start_time * 1000);
+          if(date.getMonth() == matchDate.getMonth())
+            if(date.getDate() == matchDate.getDate())
+              if(date.getFullYear() == matchDate.getFullYear()){
+                if(match.player_slot <= 127 && match.radiant_win == false){
+                  losts++;
+                }
+                else if(match.player_slot <= 127 && match.radiant_win == true){
+                  wins++;
+                }
+                else if(match.player_slot > 127 && match.radiant_win == true){
+                  losts++;
+                }
+                else if(match.player_slot > 127 && match.radiant_win == false){
+                  wins++;
+                }
+              }
+    }
+
+    if(!wins && !losts)
+      return null;
+
     let red = 0;
-    let green = 255
+    let green = 0;
+
+    if(wins/losts >= 1){
+      green = 255;
+      red = 0;
+    }
+    else{
+      green = 0;
+      red = 255;
+    }
+
     return "rgb(" + red + "," + green + ",0)";
+    
+
+
+
   }
 
-  getRadius(){
-    return 7;
+  getRadius(day){
+    var date = new Date(day);
+    return 10;
   }
 
 
