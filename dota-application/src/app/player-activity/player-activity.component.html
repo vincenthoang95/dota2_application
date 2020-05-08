@@ -48,22 +48,29 @@
 </div> -->
 
 <div class="scrolling-wrapper" *ngFor="let year of weekLayoutByYear">
-    <div style="display: inline-block; padding: 2px; margin: 2px;">
+    <div style="display: inline-block;">
         <div><b>{{year[0][0] | date:'yyyy'}}</b></div>
         <div>Sun</div>
         <div>Mon</div>
-        <div>Tues</div>
+        <div>Tue</div>
         <div>Wed</div>
-        <div>Thurs</div>
+        <div>Thu</div>
         <div>Fri</div>
         <div>Sat</div>
     </div>
-    <div *ngFor="let week of year" style="display: inline-block; margin: 2px;" class="col">
-        <div *ngFor="let day of week">
+    <div *ngFor="let week of year" style="display: inline-block;" class="col">
+        <div *ngFor="let day of week" style="height:20px; width: 20px; margin: 2px;">
             <!-- {{displayDay(day)}} -->
-            <svg height="12" width="12">
-                <circle cx="6" cy="6.2" [attr.r]="getRadius(day)" [attr.fill]="getColor(day)"/>
-            </svg> 
+            <div *ngIf='day !== 0; else showBlank' [title]='day | date: "MM-dd-yyyy"'>
+                <svg height="20" width="20" *ngIf='day !== 0; else showBlank' style="background-color: gray;">
+                    <circle cx="10" cy="10" [attr.r]="getRadius(day)" [attr.fill]="getColor(day)"/>
+                </svg> 
+            </div>
+            <ng-template #showBlank>
+                <svg height="20" width="20">
+                    
+                </svg> 
+            </ng-template>
         </div>
     </div>
 </div>

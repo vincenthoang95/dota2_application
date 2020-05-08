@@ -135,7 +135,7 @@ export class PlayerActivityComponent implements OnInit {
           break;
       }
       
-      if(testDate.getFullYear() == this.date.getFullYear() && testDate.getMonth() == this.date.getMonth() && testDate.getDay() == this.date.getDay()){
+      if(testDate.getFullYear() == this.date.getFullYear() && testDate.getMonth() == this.date.getMonth() && testDate.getDate() == this.date.getDate()){
         let weekListSize = weekList.length;
         if(weekListSize != 7){
           while(weekListSize != 7){
@@ -208,31 +208,61 @@ export class PlayerActivityComponent implements OnInit {
               }
     }
 
-    if(!wins && !losts)
-      return null;
-
     let red = 0;
     let green = 0;
 
-    if(wins/losts >= 1){
-      green = 255;
+    if(!wins && !losts){
+      // return null;
+      return "rgb(0,0,0)";
+    }
+    else if(wins >  0 && !losts){
       red = 0;
+      green = 255;
+    }
+    else if(losts > 0 && !wins){
+      red = 255;
+      green = 0;
     }
     else{
-      green = 0;
-      red = 255;
+      var wlRatio = wins/losts;
+      if(wlRatio > 1){
+        green = 255;
+        red = 0;
+      }
+      else if(wlRatio === 1){
+        green = 255;
+        red = 255;
+      }
+      else{
+        red = 255//-255*(wins/losts);
+        green = 255-(255*(losts-wins)/losts);
+      }
     }
 
     return "rgb(" + red + "," + green + ",0)";
-    
-
-
 
   }
-
+  // depends on how games played that day
   getRadius(day){
     var date = new Date(day);
-    return 10;
+    var totalGame = 0;
+    for(let match of this.allPlayerMatches){
+      let matchDate = new Date(match.start_time * 1000);
+          if(date.getMonth() == matchDate.getMonth())
+            if(date.getDate() == matchDate.getDate())
+              if(date.getFullYear() == matchDate.getFullYear()){
+                totalGame++;
+              }
+    }
+
+    if(totalGame === 0){
+      return 20;
+    }
+
+    if(totalGame >= 10)
+      return 10;
+
+    return totalGame;
   }
 
 
