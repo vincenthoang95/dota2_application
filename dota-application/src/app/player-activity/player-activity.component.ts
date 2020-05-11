@@ -24,42 +24,70 @@ export class PlayerActivityComponent implements OnInit {
   weekLayout2d = [];
   weekLayoutByYear = [];
 
+  dateMatches = {};
+
   constructor(private constantService:ConstantsService) { }
 
   ngOnInit() {
     this.constantService.getPlayerMatches().subscribe(
       data => {
         this.allPlayerMatches = data;
-        let dateMatches = [];
-        let date = new Date(1555813605 * 1000);
-        console.log(date.getMonth());
-        console.log(date.getDate());
-        console.log(date.getFullYear());
+        // let dateMatches = [];
+        // let date = new Date(1555813605 * 1000);
+        // console.log(date.getMonth());
+        // console.log(date.getDate());
+        // console.log(date.getFullYear());
 
+        // for(let match of this.allPlayerMatches){
+        //   let matchDate = new Date(match.start_time * 1000);
+        //   if(date.getMonth() == matchDate.getMonth())
+        //     if(date.getDate() == matchDate.getDate())
+        //       if(date.getFullYear() == matchDate.getFullYear())
+        //         dateMatches.push(match);
+        // }
+        // // console.log(data);
+        // console.log(dateMatches);
+
+        // let sortByYear = {};
+        // let startYear = 2012;
+        
+        // for(let year = startYear; year <= this.date.getFullYear(); year++){
+        //   let matchesList = []
+        //   for(let match of this.allPlayerMatches){
+        //     let matchDate = new Date(match.start_time * 1000);
+        //     if(matchDate.getFullYear() == year){
+        //       matchesList.push(match);
+        //     }
+        //   }
+        //   sortByYear[year] = matchesList;
+        // }
+        // console.log(sortByYear);
+
+        // var dateList = {};
+
+        var startDate = new Date();
+        startDate.setDate(1);
+        startDate.setFullYear(2012);
+        startDate.setMonth(0);
+        console.log(startDate);
+        while(true){
+          this.dateMatches[startDate.toLocaleDateString()] = [];
+          
+          if(startDate.getDate() === this.date.getDate() && startDate.getMonth() === this.date.getMonth() && startDate.getFullYear() === this.date.getFullYear()){
+            break;
+          }
+          startDate.setDate(startDate.getDate()+1);
+        }
+
+        // console.log(this.dateMatches);
+        
         for(let match of this.allPlayerMatches){
           let matchDate = new Date(match.start_time * 1000);
-          if(date.getMonth() == matchDate.getMonth())
-            if(date.getDate() == matchDate.getDate())
-              if(date.getFullYear() == matchDate.getFullYear())
-                dateMatches.push(match);
+          this.dateMatches[matchDate.toLocaleDateString()].push(match);
         }
-        // console.log(data);
-        console.log(dateMatches);
+        console.log(this.dateMatches);
 
-        let sortByYear = new Map();
-        let startYear = 2012;
-        
-        for(let year = startYear; year <= this.date.getFullYear(); year++){
-          let matchesList = []
-          for(let match of this.allPlayerMatches){
-            let matchDate = new Date(match.start_time * 1000);
-            if(matchDate.getFullYear() == year){
-              matchesList.push(match);
-            }
-          }
-          sortByYear.set(year, matchesList);
-        }
-        console.log(sortByYear.get(2012));
+
 
       },
       error => console.log(error)
@@ -166,6 +194,8 @@ export class PlayerActivityComponent implements OnInit {
     //   console.log(i);
     // }
 
+    console.log(this.date.toLocaleDateString())
+
   }
 
   checkDate(date){
@@ -188,25 +218,21 @@ export class PlayerActivityComponent implements OnInit {
     var wins = 0;
     var losts = 0;
 
-    for(let match of this.allPlayerMatches){
-      let matchDate = new Date(match.start_time * 1000);
-          if(date.getMonth() == matchDate.getMonth())
-            if(date.getDate() == matchDate.getDate())
-              if(date.getFullYear() == matchDate.getFullYear()){
-                if(match.player_slot <= 127 && match.radiant_win == false){
-                  losts++;
-                }
-                else if(match.player_slot <= 127 && match.radiant_win == true){
-                  wins++;
-                }
-                else if(match.player_slot > 127 && match.radiant_win == true){
-                  losts++;
-                }
-                else if(match.player_slot > 127 && match.radiant_win == false){
-                  wins++;
-                }
-              }
+    for(let match of this.dateMatches[date.toLocaleDateString()]){
+      if(match.player_slot <= 127 && match.radiant_win == false){
+        losts++;
+      }
+      else if(match.player_slot <= 127 && match.radiant_win == true){
+        wins++;
+      }
+      else if(match.player_slot > 127 && match.radiant_win == true){
+        losts++;
+      }
+      else if(match.player_slot > 127 && match.radiant_win == false){
+        wins++;
+      }
     }
+
 
     let red = 0;
     let green = 0;
@@ -245,15 +271,8 @@ export class PlayerActivityComponent implements OnInit {
   // depends on how games played that day
   getRadius(day){
     var date = new Date(day);
-    var totalGame = 0;
-    for(let match of this.allPlayerMatches){
-      let matchDate = new Date(match.start_time * 1000);
-          if(date.getMonth() == matchDate.getMonth())
-            if(date.getDate() == matchDate.getDate())
-              if(date.getFullYear() == matchDate.getFullYear()){
-                totalGame++;
-              }
-    }
+
+    var totalGame = this.dateMatches[date.toLocaleDateString()].length;
 
     if(totalGame === 0){
       return 20;
@@ -271,5 +290,42 @@ export class PlayerActivityComponent implements OnInit {
     return new Date(date).toLocaleDateString();
   }
 
+  hasRecord(day){
+    var date = new Date(day);
+    if(this.dateMatches[date.toLocaleDateString()].length > 0){
+      return true;
+    }
+    return false;
+  }
+
+  getWins(day){
+    var date = new Date(day);
+    var wins = 0;
+    for(let match of this.dateMatches[date.toLocaleDateString()]){
+      if(match.player_slot <= 127 && match.radiant_win == true){
+        wins++;
+      }
+      else if(match.player_slot > 127 && match.radiant_win == false){
+        wins++;
+      }
+    }
+    
+    return wins;
+  }
+
+  getLosts(day){
+    var date = new Date(day);
+    var losts = 0;
+    for(let match of this.dateMatches[date.toLocaleDateString()]){
+      if(match.player_slot <= 127 && match.radiant_win == false){
+        losts++;
+      }
+      else if(match.player_slot > 127 && match.radiant_win == true){
+        losts++;
+      }
+    }
+
+    return losts;
+  }
 
 }

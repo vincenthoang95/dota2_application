@@ -1,52 +1,3 @@
-<p>player-activity works!</p>
-<h1>{{time*1000|date}}</h1>
-<h1>{{checkDate(time*1000|date)}}</h1>
-
-
-
-{{date}}
-
-
-<svg height="16" width="16">
-    <circle cx="8" cy="8" r="8" fill="rgb(255,0,0)" />
-</svg> 
-<br>
-<svg height="16" width="16">
-    <circle cx="8" cy="8" [attr.r]="getRadius()" [attr.fill]="getColor()"/>
-</svg> 
-
-<div>
-    <div style="display: inline-block; padding: 2px; background-color: gray; margin: 2px;">
-        <div>abc</div>
-        <div>abc</div>
-        <div>abc</div>
-        <div>abc</div>
-    </div>
-    <div style="display: inline-block; padding: 2px; background-color: greenyellow; margin: 2px;">
-        <div>lol</div>
-        <div>lol</div>
-        <div>lol</div>
-        <div>lol</div>
-    </div>
-</div>
-
-<!-- <div class="scrolling-wrapper">
-    <div style="display: inline-block; padding: 2px; margin: 2px;">
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tues</div>
-        <div>Wed</div>
-        <div>Thurs</div>
-        <div>Fri</div>
-        <div>Sat</div>
-    </div>
-    <div *ngFor="let week of weekLayout" style="display: inline-block; padding: 2px; margin: 2px;" class="col">
-        <div *ngFor="let i of week | keyvalue">
-            <div *ngFor="let day of i.value">{{displayDay(day)}}</div>
-        </div>
-    </div>
-</div> -->
-
 <div class="scrolling-wrapper" *ngFor="let year of weekLayoutByYear">
     <div style="display: inline-block;">
         <div><b>{{year[0][0] | date:'yyyy'}}</b></div>
@@ -61,15 +12,26 @@
     <div *ngFor="let week of year" style="display: inline-block;" class="col">
         <div *ngFor="let day of week" style="height:20px; width: 20px; margin: 2px;">
             <!-- {{displayDay(day)}} -->
-            <div *ngIf='day !== 0; else showBlank' [title]='day | date: "MM-dd-yyyy"'>
-                <svg height="20" width="20" *ngIf='day !== 0; else showBlank' style="background-color: gray;">
-                    <circle cx="10" cy="10" [attr.r]="getRadius(day)" [attr.fill]="getColor(day)"/>
-                </svg> 
-            </div>
-            <ng-template #showBlank>
-                <svg height="20" width="20">
-                    
-                </svg> 
+            <span [tooltip]="recordContent" content-type="template" tooltip-class="tooltip-feedback" style="display: inline-block;">
+                <!-- <div *ngIf='day !== 0; else showBlank' [title]='day | date: "MM-dd-yyyy"'> -->
+                <div *ngIf='day !== 0; else showBlank'>
+                    <svg height="20" width="20" *ngIf='day !== 0; else showBlank' style="background-color: gray;">
+                        <circle cx="10" cy="10" [attr.r]="getRadius(day)" [attr.fill]="getColor(day)"/>
+                    </svg> 
+                </div>
+                <ng-template #showBlank>
+                    <svg height="20" width="20">
+                        
+                    </svg> 
+                </ng-template>
+            </span>
+            <ng-template #recordContent style="display: inline-block;">
+                <div style="background-color: white;color: black; padding: 5px;">
+                    {{day | date: 'MM-dd-yyyy'}}
+                    <div *ngIf='hasRecord(day)'>
+                        {{getWins(day)}} - {{getLosts(day)}}
+                    </div>
+                </div>
             </ng-template>
         </div>
     </div>
