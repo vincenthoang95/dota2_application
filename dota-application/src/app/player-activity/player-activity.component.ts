@@ -26,6 +26,12 @@ export class PlayerActivityComponent implements OnInit {
 
   dateMatches = {};
 
+
+  clickMatches = false;
+  displayMatches;
+
+  displayActivity = false;
+
   constructor(private constantService:ConstantsService) { }
 
   ngOnInit() {
@@ -69,7 +75,7 @@ export class PlayerActivityComponent implements OnInit {
         startDate.setDate(1);
         startDate.setFullYear(2012);
         startDate.setMonth(0);
-        console.log(startDate);
+
         while(true){
           this.dateMatches[startDate.toLocaleDateString()] = [];
           
@@ -85,25 +91,17 @@ export class PlayerActivityComponent implements OnInit {
           let matchDate = new Date(match.start_time * 1000);
           this.dateMatches[matchDate.toLocaleDateString()].push(match);
         }
-        console.log(this.dateMatches);
 
-
+        this.displayActivity = true;
 
       },
       error => console.log(error)
     );
 
-
-    let tempDate = new Date (1451590874 * 1000);
-    console.log('before   ' + tempDate);
-    let newDate = new Date(tempDate.setDate(tempDate.getDate() + 1));
-    console.log('after    ' + newDate);
-
     let testDate = new Date();
     testDate.setFullYear(2012);
     testDate.setMonth(0);
     testDate.setDate(1);
-    console.log(testDate);
 
 
     let weekList = [];
@@ -186,15 +184,6 @@ export class PlayerActivityComponent implements OnInit {
       testDate.setDate(testDate.getDate()+1);
 
     }
-    console.log(this.weekLayout);
-    console.log(this.weekLayout2d);
-    console.log(this.weekLayoutByYear);
-
-    // for(let i of this.weekLayout){
-    //   console.log(i);
-    // }
-
-    console.log(this.date.toLocaleDateString())
 
   }
 
@@ -326,6 +315,23 @@ export class PlayerActivityComponent implements OnInit {
     }
 
     return losts;
+  }
+
+  toggleDay(day){
+    var date = new Date(day);
+    this.displayMatches = this.dateMatches[date.toLocaleDateString()];
+    if(this.displayMatches.length > 0){
+      window.scrollTo(0,0);
+      this.clickMatches = true;
+    }
+    else
+      this.clickMatches = false;
+
+    
+  }
+
+  toggleOffMatches(){
+    this.clickMatches = false;
   }
 
 }

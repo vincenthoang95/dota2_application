@@ -1,39 +1,55 @@
-<div class="scrolling-wrapper" *ngFor="let year of weekLayoutByYear">
-    <div style="display: inline-block;">
-        <div><b>{{year[0][0] | date:'yyyy'}}</b></div>
-        <div>Sun</div>
-        <div>Mon</div>
-        <div>Tue</div>
-        <div>Wed</div>
-        <div>Thu</div>
-        <div>Fri</div>
-        <div>Sat</div>
-    </div>
-    <div *ngFor="let week of year" style="display: inline-block;" class="col">
-        <div *ngFor="let day of week" style="height:20px; width: 20px; margin: 2px;">
-            <!-- {{displayDay(day)}} -->
-            <span [tooltip]="recordContent" content-type="template" tooltip-class="tooltip-feedback" style="display: inline-block;">
-                <!-- <div *ngIf='day !== 0; else showBlank' [title]='day | date: "MM-dd-yyyy"'> -->
-                <div *ngIf='day !== 0; else showBlank'>
-                    <svg height="20" width="20" *ngIf='day !== 0; else showBlank' style="background-color: gray;">
-                        <circle cx="10" cy="10" [attr.r]="getRadius(day)" [attr.fill]="getColor(day)"/>
-                    </svg> 
-                </div>
-                <ng-template #showBlank>
-                    <svg height="20" width="20">
-                        
-                    </svg> 
-                </ng-template>
-            </span>
-            <ng-template #recordContent style="display: inline-block;">
-                <div style="background-color: white;color: black; padding: 5px;">
-                    {{day | date: 'MM-dd-yyyy'}}
-                    <div *ngIf='hasRecord(day)'>
-                        {{getWins(day)}} - {{getLosts(day)}}
-                    </div>
-                </div>
-            </ng-template>
+<h2 style='text-align: center;'>Matches of Day Selected<small>(click on day)</small></h2>
+
+<div *ngIf='clickMatches'>
+        <button class="btn btn-default" style='float:right' (click)='toggleOffMatches()' title='Hide Matches'>
+            <span class="glyphicon glyphicon-menu-up"></span>
+          </button>
+        <div style='width: 50%;margin: 0 auto;'>
+            <app-player-stats [recentMatches]='displayMatches'></app-player-stats>
         </div>
-    </div>
 </div>
 
+<div *ngIf='!displayActivity; else display'>
+    <h1>Loading...</h1>
+</div>
+
+<ng-template #display>
+    <div class="scrolling-wrapper" *ngFor="let year of weekLayoutByYear">
+        <div style="display: inline-block; height:150px">
+            <!-- <div><b>{{year[0][0] | date:'yyyy'}}</b></div> -->
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div style="padding-bottom: 5px;">Sat</div>
+        </div>
+        <div *ngFor="let week of year" style="display: inline-block;" class="col">
+            <div *ngFor="let day of week" style="height:20px; width: 20px; margin: 2px;" (click)='toggleDay(day)'>
+                <!-- {{displayDay(day)}} -->
+                <span [tooltip]="recordContent" content-type="template" tooltip-class="tooltip-feedback" style="display: inline-block;">
+                    <!-- <div *ngIf='day !== 0; else showBlank' [title]='day | date: "MM-dd-yyyy"'> -->
+                    <div *ngIf='day !== 0; else showBlank'>
+                        <svg height="20" width="20" *ngIf='day !== 0; else showBlank' style="background-color: gray;">
+                            <circle cx="10" cy="10" [attr.r]="getRadius(day)" [attr.fill]="getColor(day)"/>
+                        </svg> 
+                    </div>
+                    <ng-template #showBlank>
+                        <svg height="20" width="20">
+                            
+                        </svg> 
+                    </ng-template>
+                </span>
+                <ng-template #recordContent style="display: inline-block;">
+                    <div style="background-color: white;color: black; padding: 5px;">
+                        {{day | date: 'MM-dd-yyyy'}}
+                        <div *ngIf='hasRecord(day)'>
+                            {{getWins(day)}} - {{getLosts(day)}}
+                        </div>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+    </div>
+</ng-template>

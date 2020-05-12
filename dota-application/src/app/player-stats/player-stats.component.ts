@@ -26,6 +26,7 @@ export class PlayerStatsComponent implements OnInit {
   }
   
   // recentMatches
+  @Input()
   recentMatches = JSON.parse(this.playerStatsService.getRecentMatches());
 
   showRecentMatches = true;
