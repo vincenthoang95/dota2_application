@@ -5,8 +5,8 @@
         <th>Date</th>
         <th>Hero</th>
         <th>Kills</th>
-        <th>Assists</th>
         <th>Deaths</th>
+        <th>Assists</th>
         <th>Result</th>
       </tr>
       <tr *ngFor = 'let match of recentMatches' (click)="toggleToMatch(match.match_id)" [ngSwitch]="getResult(match)">
@@ -15,8 +15,8 @@
         <td>{{match.start_time*1000 | date}}</td>
         <td>{{getHeroName(match.hero_id)}}</td>
         <td>{{match.kills}}</td>
-        <td>{{match.assists}}</td>
         <td>{{match.deaths}}</td>
+        <td>{{match.assists}}</td>
         
         <td *ngSwitchCase="'Won'" id = "won">Won</td>
         <td *ngSwitchCase="'Lost'" id = "lost">Lost</td>

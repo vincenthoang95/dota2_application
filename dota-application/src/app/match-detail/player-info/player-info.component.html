@@ -1,0 +1,63 @@
+<table>
+    <th></th>
+    <th>Player<br>Name</th>
+    <th><span title="Kills">K</span></th>
+    <th><span title="Deaths">D</span></th>
+    <th><span title="Assits">A</span></th>
+    <th><span title="Gold Per Minute">GPM</span></th>
+    <th><span title="Experience Per Minute">XPM</span></th>
+    <th>Items</th>
+
+    <tr *ngFor = "let player of teamPlayers">
+        <td><span [title]=heroStats[player.hero_id].localized_name><img src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></span><div>{{player.level}}</div></td>
+        <td>{{playerExists(player.personaname)}}</td>
+        <td>
+            <ng-template #killsContent>
+                <div style="background-color: white;color: black;">
+                    <app-player-kill-death [player]="player.killed"></app-player-kill-death>
+                </div>
+            </ng-template>
+            <span [tooltip]="killsContent" content-type="template" tooltip-class="tooltip-feedback">{{player.kills}}</span>
+        </td>
+        <!-- <td>{{player.deaths}}</td> -->
+        <td>
+            <ng-template #deathsContent>
+                <div style="background-color: white;color: black;">
+                    <app-player-kill-death [player]="player.killed_by"></app-player-kill-death>
+                </div>
+            </ng-template>
+            <span [tooltip]="deathsContent" content-type="template" tooltip-class="tooltip-feedback">{{player.deaths}}</span>
+        </td>
+        <td>{{player.assists}}</td>
+        <td>{{player.gold_per_min}}</td>
+        <td>{{player.xp_per_min}}</td>
+
+        <div id="item_slot" *ngFor="let items of player|sortPlayerItem">
+            <td><span [tooltip]="column1Content" content-type="template" tooltip-class="tooltip-feedback"><img src="{{getItemImage(items[0])}}" *ngIf="items[0]"></span></td>
+            <td><span [tooltip]="column2Content" content-type="template" tooltip-class="tooltip-feedback"><img src="{{getItemImage(items[1])}}" *ngIf="items[1]"></span></td>
+            <td><span [tooltip]="column3Content" content-type="template" tooltip-class="tooltip-feedback"><img src="{{getItemImage(items[2])}}" *ngIf="items[2]"></span></td>
+            <td *ngIf="items.length > 3"><span [tooltip]="column4Content" content-type="template" tooltip-class="tooltip-feedback"><img src="{{getItemImage(items[3])}}" *ngIf="items[3]"></span></td>
+            <ng-template #column1Content>
+                <div style="background-color: white;color: black; padding: 5px;">
+                    <app-item-description [itemId]="items[0]" [itemIds]="itemIds" [itemList]="itemList"></app-item-description>
+                </div>
+            </ng-template>
+            <ng-template #column2Content>
+                <div style="background-color: white;color: black; padding: 5px;">
+                    <app-item-description [itemId]="items[1]" [itemIds]="itemIds" [itemList]="itemList"></app-item-description>
+                </div>
+            </ng-template>
+            <ng-template #column3Content>
+                <div style="background-color: white;color: black; padding: 5px;">
+                    <app-item-description [itemId]="items[2]" [itemIds]="itemIds" [itemList]="itemList"></app-item-description>
+                </div>
+            </ng-template>
+            <ng-template #column4Content>
+                <div style="background-color: white;color: black; padding: 5px;">
+                    <app-item-description [itemId]="items[3]" [itemIds]="itemIds" [itemList]="itemList"></app-item-description>
+                </div>
+            </ng-template>
+        </div>
+
+    </tr>
+</table>

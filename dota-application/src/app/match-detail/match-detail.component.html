@@ -1,2 +1,40 @@
 <p>match-detail works!</p>
+
 <h1>Match ID: {{matchId}}</h1>
+<div [ngSwitch]= "radiantWin">
+    <h1 *ngSwitchCase="true" id="radiantVictory">RADIANT VICTORY</h1>
+    <h1 *ngSwitchCase="false" id="direVictory">DIRE VICTORY</h1>
+    <div id = "matchStats">
+        <h1 id="radiantScore">{{radiantScore}}</h1><h1 id=duration> {{duration | secToMin}} </h1><h1 id="direScore">{{direScore}}</h1>
+    </div>
+</div>
+
+
+<div class="picksBans">
+    <!-- <h1 class="pick" *ngFor = "let picks of picksBans">{{picks.hero_id}}</h1> -->
+    <h3>Picks:</h3>
+    <div class="picks" *ngFor= "let pick of picks">
+        <span [title]=heroStats[pick.hero_id].localized_name><img class="heroPick" src="assets/dota_hero_image/{{getHeroImage(pick.hero_id)}}"></span>
+        <div class="radiantPick" *ngIf="pick.team == 0"></div>
+        <div class="direPick" *ngIf="pick.team == 1"></div>
+    </div>
+    <h3>Bans:</h3>
+    <div class="bans" *ngFor="let ban of bans">
+        <span [title]=heroStats[ban.hero_id].localized_name><img class="heroBan" src="assets/dota_hero_image/{{getHeroImage(ban.hero_id)}}"></span>
+        <div class="radiantPick" *ngIf="ban.team == 0"></div>
+        <div class="direPick" *ngIf="ban.team == 1"></div>
+    </div>
+</div>
+
+
+<h3>Radiant Team</h3>
+<app-player-info [teamPlayers]="radiantPlayers"></app-player-info>
+
+<h3>Dire Team</h3>
+<app-player-info [teamPlayers]="direPlayers"></app-player-info>
+
+<h3>Radiant Ability Builds</h3>
+<app-hero-ability-build [teamPlayers]="radiantPlayers" [heroInfo]="heroStats"></app-hero-ability-build>
+
+<h3>Dire Ability Builds</h3>
+<app-hero-ability-build [teamPlayers]="direPlayers" [heroInfo]="heroStats"></app-hero-ability-build>
