@@ -21,6 +21,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
@@ -32,6 +33,7 @@ import com.dota.repository.HerosRepository;
 import com.dota.utils.OpenDotaAPIUtils;
 
 @RestController
+@CrossOrigin
 public class TestController {
 	
 	@Autowired
@@ -75,7 +77,8 @@ public class TestController {
 		
 	}
 	@GetMapping("/recentMatches")
-	public List<PlayerMatch> getRecentMatches() {
+//	public List<PlayerMatch> getRecentMatches() {
+	public String getRecentMatches() {
 		List<Heros> heroList = herosRepository.findAll();
 		
 		RestTemplate restTemplate = new RestTemplate();
@@ -105,7 +108,8 @@ public class TestController {
 		}
 		
 		
-		return playerMatchList;
+		//return playerMatchList;
+		return recentMatchesList.toString();
 		
 		
 	}

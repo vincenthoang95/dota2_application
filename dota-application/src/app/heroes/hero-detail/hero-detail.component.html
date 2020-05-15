@@ -1,0 +1,15 @@
+<!-- <br>
+<p>hero-detail works!</p>
+{{heroInfo.id}}
+{{heroInfo.localized_name}} -->
+
+
+<div style="text-align: center;">
+    <h1>{{heroInfo.localized_name}}</h1>
+    <img class="heroImg" src="assets/dota_hero_image/{{getHeroImage(heroInfo.img)}}" width=260 height=150>
+    <div>
+        <span *ngFor="let ability of heroAbilities.abilities">
+            <img *ngIf="ability !== 'generic_hidden'" src="assets/dota_ability_image/{{getAbilityImage(ability)}}" >
+        </span>
+    </div>
+</div>
