@@ -34,7 +34,7 @@ export class PlayerKillDeathComponent implements OnInit {
      
   }
 
-
+  // gets hero image hero name
   getHeroImage(npcName){
     return this.heroNameList[npcName].img.split("/").pop().slice(0,-1);
   }

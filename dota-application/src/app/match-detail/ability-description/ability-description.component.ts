@@ -19,7 +19,7 @@ export class AbilityDescriptionComponent implements OnInit {
     this.abilityInfo = this.abilityList[abilityName];
   }
 
-
+  // returning string based on multiple increments (ex. [12,34,66,100] to 12/34/66/100)
   displayIncrement(incrementValue){
     var result = "";
     // console.log(incrementList);

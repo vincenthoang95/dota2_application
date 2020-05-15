@@ -47,6 +47,7 @@ export class HeroAbilityBuildComponent implements OnInit {
 
   }
 
+  // creates list to display in table header
   totalLevelList(){
     var levelList = new Array();
     for(let i=1; i<=this.totalLevels; i++){
@@ -55,15 +56,15 @@ export class HeroAbilityBuildComponent implements OnInit {
     return levelList;
   }
 
+  // gets hero image name
   getHeroImage(heroId){
     var img:string = this.heroInfo[heroId].img;
     var imgName = img.split("/").pop().slice(0,-1);
     return imgName;
   }
 
+  // gets hero ability image
   getAbilityImage(abilityId):any{
-
-
     // console.log(abilityId);
     if(this.abilityIdList === undefined){
       console.log("abilityIdList is undefined");

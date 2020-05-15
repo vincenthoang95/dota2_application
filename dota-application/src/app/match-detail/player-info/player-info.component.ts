@@ -33,7 +33,7 @@ export class PlayerInfoComponent implements OnInit {
     )
   }
 
-
+  //gets hero image name
   getHeroImage(heroId){
 
     var img:string = this.heroStats[heroId].img;
@@ -41,6 +41,7 @@ export class PlayerInfoComponent implements OnInit {
     return imgName;
   }
 
+  // gets item image name
   getItemImage(itemId){
     if(itemId == 0){
       return null;
@@ -51,6 +52,7 @@ export class PlayerInfoComponent implements OnInit {
     return "assets/dota_item_image/" + img;
   }
 
+  // returns if the player is hidden (Anonymous) or not  
   playerExists(playerName){
     if(playerName == null){
       return "Anonymous";
@@ -58,6 +60,7 @@ export class PlayerInfoComponent implements OnInit {
     return playerName;
   }
 
+  // returns the item description
   getItemDescription(itemId){
     var itemName = this.itemIds[itemId];
     return this.itemList[itemName];

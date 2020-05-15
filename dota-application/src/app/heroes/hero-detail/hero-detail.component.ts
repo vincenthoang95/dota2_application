@@ -40,10 +40,12 @@ export class HeroDetailComponent implements OnInit {
     
   }
 
+  // returns hero image name
   getHeroImage(imgPath){
     return imgPath.split("/").pop();
   }
 
+  // returns hero ability name
   getAbilityImage(ability){
     // this.abilitiesList[ability].
     return ability + "_md.png"

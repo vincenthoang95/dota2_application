@@ -29,6 +29,7 @@ export class HeroesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    // catergorizing each hero by their primary attribute
     this.constantService.getHeroesList().subscribe(
       data=>{
         // this.heroStats = Object.keys(data).map(i => data[i])
@@ -57,11 +58,12 @@ export class HeroesComponent implements OnInit {
 
   }
 
-
+  // return hero image name
   getHeroImage(imgPath){
     return imgPath.split("/").pop();
   }
 
+  // displays clicked hero on bottom of page
   toggleDisplayHero(heroInfo){
     this.showHero = true;
     // this.heroId = heroId

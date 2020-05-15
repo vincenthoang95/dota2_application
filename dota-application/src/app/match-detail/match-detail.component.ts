@@ -38,11 +38,13 @@ export class MatchDetailComponent implements OnInit {
     ) { }
 
   ngOnInit() {
+    // gets the matchId in the url
     this.route.paramMap.subscribe((params: ParamMap) =>{
         this.matchId = params.get('matchId')
       }
     );
 
+    // gets match detail based on the matchId
     this.matchDetailService.getMatchInfo(this.matchId).subscribe(
       data => 
       {
@@ -89,13 +91,15 @@ export class MatchDetailComponent implements OnInit {
 
   }
 
+  // gets heroes image path
   getHeroImage(heroId){
 
     var img:string = this.heroStats[heroId].img;
     var imgName = img.split("/").pop().slice(0,-1);
     return imgName;
   }
-
+  
+  // gets image name
   getItemImage(itemId){
     if(itemId == 0){
       return null;
@@ -106,6 +110,7 @@ export class MatchDetailComponent implements OnInit {
     return "assets/dota_item_image/" + img;
   }
 
+  // returns if the player is hidden (Anonymous) or not  
   playerExists(playerName){
     if(playerName == null){
       return "Anonymous";

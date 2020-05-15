@@ -76,6 +76,7 @@ export class PlayerActivityComponent implements OnInit {
         startDate.setFullYear(2012);
         startDate.setMonth(0);
 
+        // contructs a map with dates as key and value is an empty array
         while(true){
           this.dateMatches[startDate.toLocaleDateString()] = [];
           
@@ -87,6 +88,7 @@ export class PlayerActivityComponent implements OnInit {
 
         // console.log(this.dateMatches);
         
+        // adding match information based on the day played
         for(let match of this.allPlayerMatches){
           let matchDate = new Date(match.start_time * 1000);
           this.dateMatches[matchDate.toLocaleDateString()].push(match);
@@ -107,8 +109,11 @@ export class PlayerActivityComponent implements OnInit {
     let weekList = [];
     let weekNum = 1;
     let nextYear = testDate.getFullYear() + 1;
+
+    // constructs a 3d array based on [year[month[(days in the week)]]]
     while(true){
       // console.log(testDate);
+      // reaches to the end of the year (ex. 2019 -> 2020)
       if(testDate.getFullYear() == nextYear){
         // this.weekLayout[weekNum] = weekList;
 
@@ -141,7 +146,7 @@ export class PlayerActivityComponent implements OnInit {
         continue;
         // break;
       }
-
+      // adding in the days for the week
       switch(testDate.getDay()){
         case 0:
         case 1:
@@ -161,6 +166,7 @@ export class PlayerActivityComponent implements OnInit {
           break;
       }
       
+      // reaches the current date
       if(testDate.getFullYear() == this.date.getFullYear() && testDate.getMonth() == this.date.getMonth() && testDate.getDate() == this.date.getDate()){
         let weekListSize = weekList.length;
         if(weekListSize != 7){
@@ -201,7 +207,7 @@ export class PlayerActivityComponent implements OnInit {
     return newDate;
   }
 
-
+  // sets color of cicle based on wins and loses on day
   getColor(day){
     var date = new Date(day);
     var wins = 0;
@@ -257,6 +263,7 @@ export class PlayerActivityComponent implements OnInit {
     return "rgb(" + red + "," + green + ",0)";
 
   }
+
   // depends on how games played that day
   getRadius(day){
     var date = new Date(day);
@@ -273,12 +280,12 @@ export class PlayerActivityComponent implements OnInit {
     return totalGame;
   }
 
-
   displayDay(date){
     if(date === 0) return 'blank';
     return new Date(date).toLocaleDateString();
   }
 
+  // checks if games are played that day
   hasRecord(day){
     var date = new Date(day);
     if(this.dateMatches[date.toLocaleDateString()].length > 0){
@@ -287,6 +294,7 @@ export class PlayerActivityComponent implements OnInit {
     return false;
   }
 
+  // returns number of loses on day
   getWins(day){
     var date = new Date(day);
     var wins = 0;
@@ -302,6 +310,7 @@ export class PlayerActivityComponent implements OnInit {
     return wins;
   }
 
+  // returns number of loses on day
   getLosts(day){
     var date = new Date(day);
     var losts = 0;
@@ -317,6 +326,7 @@ export class PlayerActivityComponent implements OnInit {
     return losts;
   }
 
+  // displays matches on top of page when day is clicked
   toggleDay(day){
     var date = new Date(day);
     this.displayMatches = this.dateMatches[date.toLocaleDateString()];
@@ -330,6 +340,7 @@ export class PlayerActivityComponent implements OnInit {
     
   }
 
+  // hides the matches of the day
   toggleOffMatches(){
     this.clickMatches = false;
   }

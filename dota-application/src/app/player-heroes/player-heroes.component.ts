@@ -66,6 +66,8 @@ export class PlayerHeroesComponent implements OnInit {
       // console.log("this is the display data ", this.displayData);
       this.sortedData = this.displayData;
       this.displayHeroes = true;
+
+      // constructs coulmn values for each hero
       // this.constantService.getFilterPlayerHeroesPlayed(params['date'], params['patch'], params['region']).subscribe(
       //   data => {
       //     this.playerHeroesStats = data;
@@ -106,21 +108,24 @@ export class PlayerHeroesComponent implements OnInit {
 
   }
 
+  // returns hero image name
   heroImage(heroId){
     return this.heroesList[heroId].img.split('/').pop();
   }
+
 
   paginationSize(){
     console.log(this.playerHeroesStats.length/this.pageSize);
     return this.playerHeroesStats.length/this.pageSize;
   }
 
+  // returns hero's name
   getHeroName(heroId){
     return this.heroesList[heroId].localized_name;
   }
 
 
-
+  // sorts the data in asc or desc based on column
   sortData(sort: Sort) {
     const data = this.displayData.slice();
     if (!sort.active || sort.direction === '') {
@@ -149,7 +154,7 @@ export class PlayerHeroesComponent implements OnInit {
     }
   }
 
-
+  // filter options for date
   date(value: string){
 
     switch(value) {
@@ -168,6 +173,7 @@ export class PlayerHeroesComponent implements OnInit {
     }
   }
 
+  // filter options for patch
   patch(value: any): void {
     if(value === 'none'){
       this.router.navigate([], {relativeTo:this.route, queryParams: { patch: null }, queryParamsHandling: 'merge' });
@@ -177,6 +183,7 @@ export class PlayerHeroesComponent implements OnInit {
     }
   }
 
+  // filter options for region
   region(value: any){
     if(value === 'none'){
       this.router.navigate([], {relativeTo:this.route, queryParams: { region: null }, queryParamsHandling: 'merge' });
@@ -186,7 +193,7 @@ export class PlayerHeroesComponent implements OnInit {
     }
   }
 
-
+  // resets the filters to empty
   displayFilter(){
     this.showFilter = !this.showFilter;
     if(this.showFilter === false){

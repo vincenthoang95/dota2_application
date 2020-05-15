@@ -42,6 +42,7 @@ export class PlayerStatsComponent implements OnInit {
     });
   }
 
+  // gets hero image name (ex. [hero name]_full.png)
   getHeroImage(heroId){
     var img;
     this.heroInfo.forEach(hero => {
@@ -53,6 +54,7 @@ export class PlayerStatsComponent implements OnInit {
     return img;
   }
 
+  // gets hero name
   getHeroName(heroId){
     var heroName;
     this.heroInfo.forEach(hero =>{
@@ -63,6 +65,9 @@ export class PlayerStatsComponent implements OnInit {
     return heroName;
   }
 
+  // gets result (win or lost)
+  // player_slot <= 127 (radiant)
+  // player_slot > 127 (dire)
   getResult(match):String{
     if(match.player_slot <= 127 && match.radiant_win == false){
       return 'Lost';
@@ -79,6 +84,7 @@ export class PlayerStatsComponent implements OnInit {
     
   }
   
+  // routes to match detail page
   toggleToMatch(matchId){
     this.router.navigate(['/matches',matchId]);
   }
