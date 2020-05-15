@@ -198,7 +198,7 @@ public class TestController {
 				}
 //				System.out.println(abilityName);
 				String firstWord = abilityName.split("_")[0];
-				if(firstWord.equals("dota") || firstWord.equals("ability") || firstWord.equals("seasonal") || firstWord.equals("courier") || firstWord.equals("ancient") || firstWord.equals("greevil")) {
+				if(firstWord.equals("dota") || firstWord.equals("ability") || firstWord.equals("seasonal") || firstWord.equals("courier") || firstWord.equals("greevil")) {
 					continue;
 				}
 				else {
