@@ -8,8 +8,10 @@ export class PlayerStatsService {
   constructor(private http: HttpClient) { }
 
   getRecentMatches(){
-    return this.heroList;
-    // return this.http.get("http://localhost:8080/recentMatches")
+    // uncomment for static
+    // return this.heroList;
+
+    return this.http.get("http://localhost:8080/recentMatches")
   }
 
   getHeroInfo(){
