@@ -9,9 +9,9 @@ export class PlayerStatsService {
 
   getRecentMatches(){
     // uncomment for static
-    // return this.heroList;
+    return this.heroList;
 
-    return this.http.get("http://localhost:8080/recentMatches")
+    // return this.http.get("http://localhost:8080/recentMatches")
   }
 
   getHeroInfo(){

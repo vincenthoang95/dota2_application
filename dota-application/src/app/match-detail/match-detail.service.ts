@@ -16,9 +16,9 @@ export class MatchDetailService {
 
   getMatchInfo(matchId){
     // uncomment for static
-    // return this.http.get(this.constants.URL + "/testMatch");
+    return this.http.get(this.constants.URL + "/testMatch");
     
-    return this.http.get(this.constants.URL + "/matches/" + matchId);
+    // return this.http.get(this.constants.URL + "/matches/" + matchId);
   }
 
 

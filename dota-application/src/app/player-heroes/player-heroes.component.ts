@@ -46,51 +46,51 @@ export class PlayerHeroesComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.displayHeroes = false;
 
-      //uncomment for static
-      // this.playerHeroesStats = JSON.parse(this.constantService.getFilterPlayerHeroesPlayed(params['date'], params['patch'], params['region']));
-      // this.displayData = [];
-      // for(let hero of this.playerHeroesStats){
-      //   var tempData:any = {};
-      //   tempData.hero_id = hero.hero_id;
-      //   tempData.matched_played = hero.games;
-      //   let win = hero.win/hero.games;
-      //   tempData.win = ((win >= 0) ? win : 0);
-      //   tempData.played_with = hero.with_games;
-      //   let win_with = hero.with_win/hero.with_games;
-      //   tempData.win_with = ((win_with >= 0 ? win_with : 0));
-      //   tempData.played_against = hero.against_games;
-      //   let win_against = hero.against_win/hero.against_games;
-      //   tempData.win_against = ((win_against >= 0) ? win_against : 0);
-      //   this.displayData.push(tempData);
-      // }
 
-      // this.sortedData = this.displayData;
-      // this.displayHeroes = true;
-
-      this.constantService.getFilterPlayerHeroesPlayed(params['date'], params['patch'], params['region']).subscribe(
-        data => {
-          this.playerHeroesStats = data;
-          this.displayData = [];
-          for(let hero of this.playerHeroesStats){
-            var tempData:any = {};
-            tempData.hero_id = hero.hero_id;
-            tempData.matched_played = hero.games;
-            let win = hero.win/hero.games;
-            tempData.win = ((win >= 0) ? win : 0);
-            tempData.played_with = hero.with_games;
-            let win_with = hero.with_win/hero.with_games;
-            tempData.win_with = ((win_with >= 0 ? win_with : 0));
-            tempData.played_against = hero.against_games;
-            let win_against = hero.against_win/hero.against_games;
-            tempData.win_against = ((win_against >= 0) ? win_against : 0);
-            this.displayData.push(tempData);
-          }
-          // console.log("this is the display data ", this.displayData);
-          this.sortedData = this.displayData;
-          this.displayHeroes = true;
-        },
-        error => console.log(error)
-      )
+      this.playerHeroesStats = JSON.parse(this.constantService.getFilterPlayerHeroesPlayed(params['date'], params['patch'], params['region']));
+      this.displayData = [];
+      for(let hero of this.playerHeroesStats){
+        var tempData:any = {};
+        tempData.hero_id = hero.hero_id;
+        tempData.matched_played = hero.games;
+        let win = hero.win/hero.games;
+        tempData.win = ((win >= 0) ? win : 0);
+        tempData.played_with = hero.with_games;
+        let win_with = hero.with_win/hero.with_games;
+        tempData.win_with = ((win_with >= 0 ? win_with : 0));
+        tempData.played_against = hero.against_games;
+        let win_against = hero.against_win/hero.against_games;
+        tempData.win_against = ((win_against >= 0) ? win_against : 0);
+        this.displayData.push(tempData);
+      }
+      // console.log("this is the display data ", this.displayData);
+      this.sortedData = this.displayData;
+      this.displayHeroes = true;
+      // this.constantService.getFilterPlayerHeroesPlayed(params['date'], params['patch'], params['region']).subscribe(
+      //   data => {
+      //     this.playerHeroesStats = data;
+      //     this.displayData = [];
+      //     for(let hero of this.playerHeroesStats){
+      //       var tempData:any = {};
+      //       tempData.hero_id = hero.hero_id;
+      //       tempData.matched_played = hero.games;
+      //       let win = hero.win/hero.games;
+      //       tempData.win = ((win >= 0) ? win : 0);
+      //       tempData.played_with = hero.with_games;
+      //       let win_with = hero.with_win/hero.with_games;
+      //       tempData.win_with = ((win_with >= 0 ? win_with : 0));
+      //       tempData.played_against = hero.against_games;
+      //       let win_against = hero.against_win/hero.against_games;
+      //       tempData.win_against = ((win_against >= 0) ? win_against : 0);
+      //       this.displayData.push(tempData);
+      //     }
+      //     // console.log("this is the display data ", this.displayData);
+      //     this.sortedData = this.displayData;
+      //     this.displayHeroes = true;
+      //   },
+      //   error => console.log(error)
+      // )
+      // console.log("reading route", this.playerHeroesStats);
     });
     // this.playerHeroesStats = JSON.parse(this.constantService.getPlayerHeroes());
     
