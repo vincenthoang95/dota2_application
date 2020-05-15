@@ -27,6 +27,18 @@ import { ItemDescriptionComponent } from './match-detail/item-description/item-d
 import { AbilityDescriptionComponent } from './match-detail/ability-description/ability-description.component';
 import { HeroesComponent } from './heroes/heroes.component';
 import { HeroDetailComponent } from './heroes/hero-detail/hero-detail.component';
+import { ItemsComponent } from './items/items.component';
+import { PlayerHeroesComponent } from './player-heroes/player-heroes.component';
+
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import {MatSortModule} from '@angular/material/sort';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select'
+import { FormsModule } from '@angular/forms';
+import {MatInputModule} from '@angular/material';
+import { PlayerActivityComponent } from './player-activity/player-activity.component';
+
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
@@ -35,6 +47,9 @@ const appRoutes:Routes = [
   {path: 'heroes', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroDetailComponent}
+  {path: 'items', component:ItemsComponent},
+  {path: 'player/heroes', component:PlayerHeroesComponent},
+  {path: 'player/activity', component:PlayerActivityComponent}
 ]
 
 @NgModule({
@@ -52,13 +67,23 @@ const appRoutes:Routes = [
     ItemDescriptionComponent,
     AbilityDescriptionComponent,
     HeroesComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    ItemsComponent,
+    PlayerHeroesComponent,
+    PlayerActivityComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
-    TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions)
+    TooltipModule.forRoot(MyDefaultTooltipOptions as TooltipOptions),
+    NgbModule,
+    MatSortModule,
+    BrowserAnimationsModule,
+    MatSelectModule,
+    FormsModule,
+    MatInputModule
+    
   ],
   providers: [PlayerStatsService, Constants],
   bootstrap: [AppComponent]

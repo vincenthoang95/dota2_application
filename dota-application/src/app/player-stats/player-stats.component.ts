@@ -26,6 +26,7 @@ export class PlayerStatsComponent implements OnInit {
   }
   
   // recentMatches
+  @Input()
   recentMatches = JSON.parse(this.playerStatsService.getRecentMatches());
 
   showRecentMatches = true;
@@ -36,7 +37,6 @@ export class PlayerStatsComponent implements OnInit {
 
   check(){
     this.recentMatches.forEach(matches => {
-      console.log(matches.heroName)
     });
   }
 
