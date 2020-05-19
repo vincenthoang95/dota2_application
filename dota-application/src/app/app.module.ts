@@ -42,14 +42,14 @@ import { PlayerActivityComponent } from './player-activity/player-activity.compo
 
 const appRoutes:Routes = [
   {path: '', redirectTo:'/player', pathMatch:'full'},
-  {path: 'matches/:matchId', component:MatchDetailComponent},
-  {path: 'player', component:PlayerStatsComponent},
-  {path: 'heroes', component:HeroesComponent},
+  {path: 'matches/:matchId', component:MatchDetailComponent, data: {title: 'Matches'}},
+  {path: 'player', component:PlayerStatsComponent, data: {title:'Player Recent Matches'}},
+  {path: 'heroes', component:HeroesComponent, data: {title: 'Heroes'}},
   // {path: 'heroes/:heroId', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroDetailComponent}
-  {path: 'items', component:ItemsComponent},
-  {path: 'player/heroes', component:PlayerHeroesComponent},
-  {path: 'player/activity', component:PlayerActivityComponent}
+  {path: 'items', component:ItemsComponent, data: {title: 'Items'}},
+  {path: 'player/heroes', component:PlayerHeroesComponent, data: {title: 'Player Heroes'}},
+  {path: 'player/activity', component:PlayerActivityComponent, data: {title: 'Player Activity'}}
 ]
 
 @NgModule({
