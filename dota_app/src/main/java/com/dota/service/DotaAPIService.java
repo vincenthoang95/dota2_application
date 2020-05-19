@@ -2,41 +2,40 @@ package com.dota.service;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.dota.model.Heros;
 import com.dota.repository.HerosRepository;
 
 @Service
-public class TestService {
+public class DotaAPIService {
 	@Autowired
 	HerosRepository herosRepository;
 	
-	public void saveHeroInfo() {
-//		JSONArray heroImageData = new JSONArray(heroData());
-//
-//		FileOutputStream fos = null;
-//		try {
-//			for(int i = 0; i < heroImageData.length(); i++) {
-//				String[] heroImgSplit = heroImageData.getJSONObject(i).get("img").toString().split("/");
-//				String heroImg = heroImgSplit[heroImgSplit.length-1].replace("?","");
-////				System.out.println(heroImg);
-//				fos = new FileOutputStream("src/main/resources/dota_hero_image/" + heroImg);
-//				
-//				ResponseEntity<byte[]> response = restTemplate.exchange("https://api.opendota.com/apps/dota2/images/heroes/"+heroImg,HttpMethod.GET,entity,byte[].class);
-//				
-//				fos.write(response.getBody());
-//			}
-//			fos.close();
-//			
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+	public void saveHeroes(JSONArray herosResponse) {
+		List<Heros> heroList = new ArrayList<>();
+		for(int i = 0; i < herosResponse.length(); i++) {
+			JSONObject heroInfo = herosResponse.getJSONObject(i);
+			
+			Heros hero = new Heros();
+			hero.setId((int)heroInfo.get("id"));
+			hero.setName(heroInfo.getString("localized_name"));
+			String[] heroImgSplit = heroInfo.get("img").toString().split("/");
+			String heroImg = heroImgSplit[heroImgSplit.length-1].replace("?","");
+			hero.setHeroImage(heroImg);
+			
+			heroList.add(hero);
+		}
+		
+		herosRepository.saveAll(heroList);
 	}
 	
 	

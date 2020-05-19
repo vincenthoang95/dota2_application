@@ -32,20 +32,9 @@ public class MatchesController {
 	
 	@GetMapping("/matches/{matchId}")
 	public String getMatchDetails(@PathVariable long matchId) {
-		JSONObject result = new JSONObject();
 		
 		JSONObject matchResponse = new JSONObject(openDotaAPIUtils.getMatchDetail(matchId));
-//		result.put("match_id", matchResponse.get("match_id"));
-//		result.put("radiant_score",  matchResponse.get("radiant_score"));
-//		result.put("dire_score",  matchResponse.get("dire_score"));
-//		result.put("radiant_win",  matchResponse.get("radiant_win"));
-//		result.put("start_time",  matchResponse.get("start_time"));
-//		result.put("duration",  matchResponse.get("duration"));
-//		result.put("players",  matchResponse.getJSONArray("players").get(0));
-//		result.put("pick_bans", matchResponse.getJSONArray("picks_bans"));
-//
-//
-//		return result.toString();
+
 		return matchResponse.toString();
 	}
 	
