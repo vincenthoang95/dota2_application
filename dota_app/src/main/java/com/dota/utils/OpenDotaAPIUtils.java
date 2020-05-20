@@ -10,9 +10,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class OpenDotaAPIUtils {
-	//this is a random test
-	final static String asd_asd = "lkasjdkf";
-
+	
+	// constant header being used when sending request to dota api
 	public HttpEntity<String> dotaOpenAPIHeader() {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("user-agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.99 Safari/537.36");

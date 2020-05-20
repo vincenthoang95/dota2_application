@@ -22,6 +22,11 @@ import org.springframework.web.client.RestTemplate;
 import com.dota.utils.OpenDotaAPIUtils;
 
 
+
+/*
+ * returns dota constants files
+ */
+
 @RestController
 @CrossOrigin
 public class MatchesController {
@@ -30,6 +35,7 @@ public class MatchesController {
 	@Autowired
 	OpenDotaAPIUtils openDotaAPIUtils;
 	
+	// return JSON of match detail based on matchId
 	@GetMapping("/matches/{matchId}")
 	public String getMatchDetails(@PathVariable long matchId) {
 		

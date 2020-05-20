@@ -57,6 +57,8 @@ public class DotaAPIController {
 		dotaApiService.saveHeroes(herosResponse);
 		
 	}
+	
+	// returns list of player's 20 recent games
 	@GetMapping("/recentMatches")
 //	public List<PlayerMatch> getRecentMatches() {
 	public String getRecentMatches() {
@@ -89,9 +91,10 @@ public class DotaAPIController {
 		
 	}
 	
+	// downloads all hero images into folder
 	@GetMapping("/loadHerosImage")
 	public void downloadHeroPictures() throws FileNotFoundException {
-		
+		// removes all images in folder
 		try {
 			FileUtils.cleanDirectory(new File("src/main/resources/dota_hero_image/"));
 		} catch (IOException e1) {
@@ -103,6 +106,7 @@ public class DotaAPIController {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject heroList = null;
 		try {
+			// reads hero file to get hero img path name
 			FileReader reader = new FileReader("src/main/resources/build/heroes.json");
 			heroList = new JSONObject(jsonParser.parse(reader).toString());			
 			
@@ -129,10 +133,11 @@ public class DotaAPIController {
 		
 		
 	}
-	
+
+	// downloads all hero abilities images into folder
 	@GetMapping("/loadHeroAbilities")
 	public void downloadHeroAbilites() throws HttpClientErrorException{
-		
+		// removes all images in folder
 		try {
 			FileUtils.cleanDirectory(new File("src/main/resources/dota_ability_image/"));
 		} catch (IOException e1) {
@@ -144,6 +149,7 @@ public class DotaAPIController {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject abilitiesList = null;
 		try {
+			// reads hero file to get hero img path name
 			FileReader reader = new FileReader("src/main/resources/build/abilities.json");
 			abilitiesList = new JSONObject(jsonParser.parse(reader).toString());
 
@@ -175,9 +181,10 @@ public class DotaAPIController {
 		
 	}
 	
+	// downloads all item images into folder
 	@GetMapping("/loadItems")
 	public void downloadItems() {
-		
+		// removes all images in folder
 		try {
 			FileUtils.cleanDirectory(new File("src/main/resources/dota_item_image/"));
 		} catch (IOException e1) {
@@ -189,6 +196,7 @@ public class DotaAPIController {
 		JSONParser jsonParser = new JSONParser();
 		JSONObject itemList = null;
 		try {
+			// reads hero file to get hero img path name
 			FileReader reader = new FileReader("src/main/resources/build/items.json");
 			itemList = new JSONObject(jsonParser.parse(reader).toString());			
 			
@@ -215,7 +223,11 @@ public class DotaAPIController {
 	
 	
 	
-	
+	/*
+	 * download and stores the image from dota API
+	 * storePath: which folder to store in
+	 * imagePath: to be used for API to get image
+	 */
 	public void saveImage(String storePath, String imagePath) {
 
 		RestTemplate restTemplate = new RestTemplate();
