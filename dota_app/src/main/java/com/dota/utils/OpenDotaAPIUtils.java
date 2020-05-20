@@ -28,35 +28,35 @@ public class OpenDotaAPIUtils {
 	
 	public String filterPlayerHeroesPlayed(long playerId, Integer date, Integer patch, Integer region) {
 		
-		
-//		JSONObject jo = new JSONObject();
-//		if(date != 0) jo.put("date", date);
-//		if(patch != 0) jo.put("patch",patch);
-//		if(region != 0) jo.put("region", region);
-		
 		String filterPath = "";
 
 		if(date != 0) filterPath += "date=" + date + "&";
 		if(patch != 0) filterPath += "patch=" + patch + "&";
 		if(region != 0) filterPath += "region=" +region + "&";
-		System.out.println(filterPath);
-		System.out.println("https://api.opendota.com/api/players/" + playerId + "/heroes?" + filterPath);
+
 		// my player id
 		playerId = 93102567;
 		String url = "https://api.opendota.com/api/players/" + playerId + "/heroes?" + filterPath;
-//		
-//		return url;
-		
-//		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("https://api.opendota.com/api/players/" + playerId + "/heroes?" + filterPath).encode();
-
-//		UriComponentsBuilder builder = UriComponentsBuilder.fromHttpUrl("https://api.opendota.com/api/players/" + playerId + "/heroes")
-//				.queryParams(jo);
-		
-//		return builder.toUriString();
 		
 		RestTemplate restTemplate = new RestTemplate();
 		ResponseEntity<String> response = restTemplate.exchange(url,HttpMethod.GET,dotaOpenAPIHeader(),String.class);
 		return response.getBody();		
+	}
+	
+	public String getRecentMatches() {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		ResponseEntity<String> response = restTemplate.exchange("https://api.opendota.com/api/players/93102567/recentMatches",HttpMethod.GET,dotaOpenAPIHeader(),String.class);
+		
+		return response.getBody();
+	}
+	
+	public String getPlayerMatches(long accountId) {
+		RestTemplate restTemplate = new RestTemplate();
+		
+		ResponseEntity<String> response = restTemplate.exchange("https://api.opendota.com/api/players/" + accountId + "/matches",HttpMethod.GET,dotaOpenAPIHeader(),String.class);
+
+		return response.getBody();
 	}
 	
 }
