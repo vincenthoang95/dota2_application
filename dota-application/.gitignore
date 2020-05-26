@@ -47,3 +47,4 @@ Thumbs.db
 
 
 /src/assets/*
+/src/app/config/constants.ts
