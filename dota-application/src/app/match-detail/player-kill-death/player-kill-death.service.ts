@@ -14,6 +14,6 @@ export class PlayerKillDeathService {
   }
 
   getHeroNameList(){
-    return this.http.get(this.constants.URL + '/getHeroNameList');
+    return this.http.get(this.constants.URL + '/getHeroNameListConstant');
   }
 }

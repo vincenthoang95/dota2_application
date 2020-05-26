@@ -23,11 +23,11 @@ export class MatchDetailService {
 
 
   getHeroStats(){
-    return this.http.get(this.constants.URL + "/testHerosStats");
+    return this.http.get(this.constants.URL + "/getHerosStatsConstant");
   }
 
   getItemInfo(){
-    return this.http.get(this.constants.URL + "/getItemInfo");
+    return this.http.get(this.constants.URL + "/getItemInfoConstant");
   }
 
 }

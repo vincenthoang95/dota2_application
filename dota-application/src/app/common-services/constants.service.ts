@@ -13,11 +13,11 @@ export class ConstantsService {
   ) {}
 
   getHeroesList(){
-    return this.http.get(this.constants.URL + "/testHerosStats");
+    return this.http.get(this.constants.URL + "/getHerosStatsConstant");
   }
 
   getHeroesAbilityList(){
-    return this.http.get(this.constants.URL + "/getHeroesAbilitiesList");
+    return this.http.get(this.constants.URL + "/getHeroesAbilitiesListConstant");
   }
 
   getAbilitiesList(){
@@ -25,7 +25,7 @@ export class ConstantsService {
   }
   
   getItemInfo(){
-    return this.http.get(this.constants.URL + "/getItemInfo");
+    return this.http.get(this.constants.URL + "/getItemInfoConstant");
   }
 
 

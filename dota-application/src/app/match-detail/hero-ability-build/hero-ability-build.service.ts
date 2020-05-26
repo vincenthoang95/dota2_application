@@ -12,7 +12,7 @@ export class HeroAbilityBuildService {
     private constants: Constants
     ){}
   getAbilityIds(){
-    return this.http.get(this.constants.URL + "/testAbilityIds");
+    return this.http.get(this.constants.URL + "/getAbilityIdsConstant");
   }
 
   getAbilityList(){
