@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin
 public class DotaConstantController {
 	
-	@GetMapping("/testHerosStats")
+	@GetMapping("/getHerosStatsConstant")
 	public String test() {
 		return getJSONFile("build/heroes.json");
 	}
 	
-	@GetMapping("/testAbilityIds")
+	@GetMapping("/getAbilityIdsConstant")
 	public String testAbilityId() {
 		return getJSONFile("build/ability_ids.json");
 	}
@@ -30,7 +30,7 @@ public class DotaConstantController {
 		return getJSONFile("build/abilities.json");
 	}
 	
-	@GetMapping("/getItemInfo")
+	@GetMapping("/getItemInfoConstant")
 	public String getItemInfo() {
 		JSONObject result = new JSONObject();
 		
@@ -40,12 +40,12 @@ public class DotaConstantController {
 		return result.toString();
 	}
 	
-	@GetMapping("/getHeroNameList")
+	@GetMapping("/getHeroNameListConstant")
 	public String getHeroNameList() {
 		return getJSONFile("build/hero_names.json");
 	}
 	
-	@GetMapping("/getHeroesAbilitiesList")
+	@GetMapping("/getHeroesAbilitiesListConstant")
 	public String getHeroesAbilitiesList() {
 		return getJSONFile("build/hero_abilities.json");
 	}
