@@ -12,6 +12,11 @@ img{
     /* filter: grayscale(80%); */
 }
 
+#item{
+    padding-left:82px;
+    padding-right:82px;
+}
+
 #item_slot td{
     width: 50px;
     height: 40px;

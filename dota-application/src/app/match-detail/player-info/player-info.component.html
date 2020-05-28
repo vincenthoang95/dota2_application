@@ -6,7 +6,7 @@
     <th><span title="Assits">A</span></th>
     <th><span title="Gold Per Minute">GPM</span></th>
     <th><span title="Experience Per Minute">XPM</span></th>
-    <th>Items</th>
+    <th id=item>Items</th>
 
     <tr *ngFor = "let player of teamPlayers">
         <td><span [title]=heroStats[player.hero_id].localized_name><img src="assets/dota_hero_image/{{getHeroImage(player.hero_id)}}"></span><div>{{player.level}}</div></td>

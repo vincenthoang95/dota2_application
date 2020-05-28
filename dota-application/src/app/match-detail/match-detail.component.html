@@ -28,13 +28,21 @@
 
 
 <h3>Radiant Team</h3>
-<app-player-info [teamPlayers]="radiantPlayers"></app-player-info>
+<div style="overflow-x:auto;">
+    <app-player-info [teamPlayers]="radiantPlayers"></app-player-info>
+</div>
 
 <h3>Dire Team</h3>
-<app-player-info [teamPlayers]="direPlayers"></app-player-info>
+<div style="overflow-x:auto;">
+    <app-player-info [teamPlayers]="direPlayers"></app-player-info>
+</div>
 
 <h3>Radiant Ability Builds</h3>
-<app-hero-ability-build [teamPlayers]="radiantPlayers" [heroInfo]="heroStats"></app-hero-ability-build>
+<div style="overflow-x:auto;">
+    <app-hero-ability-build [teamPlayers]="radiantPlayers" [heroInfo]="heroStats"></app-hero-ability-build>
+</div>
 
 <h3>Dire Ability Builds</h3>
-<app-hero-ability-build [teamPlayers]="direPlayers" [heroInfo]="heroStats"></app-hero-ability-build>
+<div style="overflow-x:auto;">
+    <app-hero-ability-build [teamPlayers]="direPlayers" [heroInfo]="heroStats"></app-hero-ability-build>
+</div>
