@@ -38,12 +38,13 @@ import {MatSelectModule} from '@angular/material/select'
 import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material';
 import { PlayerActivityComponent } from './player-activity/player-activity.component';
+import { RecentMatchesComponent } from './recent-matches/recent-matches.component';
 
 
 const appRoutes:Routes = [
-  {path: '', redirectTo:'/player', pathMatch:'full'},
+  {path: '', redirectTo:'/matches', pathMatch:'full'},
   {path: 'matches/:matchId', component:MatchDetailComponent, data: {title: 'Matches'}},
-  {path: 'player', component:PlayerStatsComponent, data: {title:'Player Recent Matches'}},
+  {path: 'matches', component:RecentMatchesComponent, data: {title:'Player Recent Matches'}},
   {path: 'heroes', component:HeroesComponent, data: {title: 'Heroes'}},
   // {path: 'heroes/:heroId', component:HeroesComponent},
   // {path: 'heroes/:heroId', component:HeroDetailComponent}
@@ -70,7 +71,8 @@ const appRoutes:Routes = [
     HeroDetailComponent,
     ItemsComponent,
     PlayerHeroesComponent,
-    PlayerActivityComponent
+    PlayerActivityComponent,
+    RecentMatchesComponent
   ],
   imports: [
     BrowserModule,
