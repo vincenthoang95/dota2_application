@@ -20,6 +20,8 @@ export class HeroAbilityBuildComponent implements OnInit {
   initDone=false;
   initDone2=false;
 
+  page = "match_detail"
+
 
   constructor(
     private heroAbilityBuildService:HeroAbilityBuildService

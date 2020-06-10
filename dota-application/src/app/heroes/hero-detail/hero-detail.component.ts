@@ -16,6 +16,8 @@ export class HeroDetailComponent implements OnInit {
 
   abilitiesList;
 
+  page = "heroes";
+
   constructor(private constantService:ConstantsService) { }
 
   ngOnInit() {
@@ -37,7 +39,6 @@ export class HeroDetailComponent implements OnInit {
       data=> this.abilitiesList = data,
       error=>console.log(error)
     )
-    
   }
 
   // returns hero image name

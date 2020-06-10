@@ -10,13 +10,27 @@ export class AbilityDescriptionComponent implements OnInit {
   @Input() abilityIdList;
   @Input() abilityList;
 
+  @Input() page;
+  @Input() abilityName;
+
   abilityInfo;
 
   constructor() { }
 
   ngOnInit() {
-    var abilityName = this.abilityIdList[this.abilityId];
-    this.abilityInfo = this.abilityList[abilityName];
+    // console.log(this.page);
+    // console.log(this.abilityName);
+    if(this.page == "match_detail"){
+      var abilityName = this.abilityIdList[this.abilityId];
+      this.abilityInfo = this.abilityList[abilityName];
+    }
+
+    if (this.page == "heroes"){
+      this.abilityInfo = this.abilityList[this.abilityName];
+    }
+
+    // console.log(abilityName)
+    // console.log(this.abilityInfo)
   }
 
   // returning string based on multiple increments (ex. [12,34,66,100] to 12/34/66/100)

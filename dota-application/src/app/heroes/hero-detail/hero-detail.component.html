@@ -9,7 +9,15 @@
     <img class="heroImg" src="assets/dota_hero_image/{{getHeroImage(heroInfo.img)}}" width=260 height=150>
     <div>
         <span *ngFor="let ability of heroAbilities.abilities">
-            <img *ngIf="ability !== 'generic_hidden'" src="assets/dota_ability_image/{{getAbilityImage(ability)}}" >
+            <span [tooltip]="abilityContent" content-type="template" tooltip-class="tooltip-feedback" placement="bottom">
+                <img *ngIf="ability !== 'generic_hidden'" src="assets/dota_ability_image/{{getAbilityImage(ability)}}">
+            </span>
+            <ng-template #abilityContent>
+                <div style="background-color: white;color: black; padding: 5px; width: 300px;">
+                    <app-ability-description [page]="page" [abilityName]="ability" [abilityList]="abilitiesList"></app-ability-description>
+                </div>
+            </ng-template>
         </span>
+
     </div>
 </div>

@@ -1,4 +1,5 @@
 <b>{{abilityInfo.dname}}</b>
+<div *ngIf="page == 'heroes'" width="100px">Description:{{abilityInfo.desc}}</div>
 <div *ngIf="abilityInfo.mc; else passiveAbility">Mana Cost: {{displayIncrement(abilityInfo.mc)}}</div>
 <div *ngIf="abilityInfo.cd">Cool Down: {{displayIncrement(abilityInfo.cd)}}</div>
 <ng-template #passiveAbility>
