@@ -9,7 +9,7 @@
         <th>Assists</th>
         <th>Result</th>
       </tr>
-      <tr *ngFor = 'let match of recentMatches' (click)="toggleToMatch(match.match_id)" [ngSwitch]="getResult(match)">
+      <tr *ngFor = 'let match of recentMatches' [ngSwitch]="getResult(match)">
         <!-- <td><img src="assets/hero_images/{{match.heroName | heroImage}}_full.png" width="50%" height="50%"></td> -->
         <td><img src="assets/dota_hero_image/{{getHeroImage(match.hero_id)}}" width="80" height="45"></td>
         <td>{{match.start_time*1000 | date}}</td>
@@ -18,8 +18,8 @@
         <td>{{match.deaths}}</td>
         <td>{{match.assists}}</td>
         
-        <td *ngSwitchCase="'Won'" id = "won">Won</td>
-        <td *ngSwitchCase="'Lost'" id = "lost">Lost</td>
+        <td *ngSwitchCase="'Won'"><a id="won" (click)="toggleToMatch(match.match_id)">Won</a></td>
+        <td *ngSwitchCase="'Lost'"><a id="lost" (click)="toggleToMatch(match.match_id)">Lost</a></td>
         <td *ngSwitchDefault>????</td>
 
       </tr>

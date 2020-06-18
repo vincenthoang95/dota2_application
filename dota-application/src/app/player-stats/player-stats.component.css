@@ -16,8 +16,10 @@ td{
 
 #won {
     color:green;
+    cursor: pointer;
 }
 
 #lost{
     color: red;
+    cursor: pointer;
 }
