@@ -39,6 +39,7 @@ import { FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material';
 import { PlayerActivityComponent } from './player-activity/player-activity.component';
 import { RecentMatchesComponent } from './recent-matches/recent-matches.component';
+import { LoginPageComponent } from './login-page/login-page.component';
 
 
 const appRoutes:Routes = [
@@ -50,7 +51,8 @@ const appRoutes:Routes = [
   // {path: 'heroes/:heroId', component:HeroDetailComponent}
   {path: 'items', component:ItemsComponent, data: {title: 'Items'}},
   {path: 'player/heroes', component:PlayerHeroesComponent, data: {title: 'Player Heroes'}},
-  {path: 'player/activity', component:PlayerActivityComponent, data: {title: 'Player Activity'}}
+  {path: 'player/activity', component:PlayerActivityComponent, data: {title: 'Player Activity'}},
+  {path: 'login', component:LoginPageComponent}
 ]
 
 @NgModule({
@@ -72,7 +74,8 @@ const appRoutes:Routes = [
     ItemsComponent,
     PlayerHeroesComponent,
     PlayerActivityComponent,
-    RecentMatchesComponent
+    RecentMatchesComponent,
+    LoginPageComponent
   ],
   imports: [
     BrowserModule,

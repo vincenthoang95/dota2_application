@@ -1,0 +1,24 @@
+ <div class="container">
+     <!-- <div class="col-sm-4 col-sm-offset-4"> -->
+         <form #loginForm="ngForm" class="col-sm-4 col-sm-offset-4" (ngSubmit)="loginUser(loginForm)">
+             <div class="form-group" [class.has-error]="emailInput.invalid && emailInput.touched">
+                 <label for="email" class="control-label">Email address</label>
+                 <input required pattern="[\w\d._%+-]+@gmail\.com$" type="email" id="email" class="form-control" placeholder="Enter email" [(ngModel)]="email" name="email" #emailInput="ngModel">
+                 <span class="help-block" *ngIf="emailInput.errors?.required && emailInput.touched">Email is required</span>
+                 <span class="help-block" *ngIf="emailInput.errors?.pattern && emailInput.touched">Email is invalid</span>
+             </div>
+             <div class="form-group" [class.has-error]="passwordInput.invalid && passwordInput.touched">
+                 <label class="control-label">Password</label>
+                 <input required type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password" #passwordInput="ngModel">
+                 <span class="help-block" *ngIf="passwordInput.invalid && passwordInput.touched">Password is required</span>
+             </div>
+            <div disabled>
+                <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Submit</button>
+            </div>
+         </form>
+     <!-- </div> -->
+ </div>
+
+ <!-- touched/untouched: box is touched or not
+ pristine/dirty: if anything typed in box or not
+ valid/invalid: if required is on tag or not -->
