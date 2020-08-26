@@ -41,18 +41,38 @@ import { PlayerActivityComponent } from './player-activity/player-activity.compo
 import { RecentMatchesComponent } from './recent-matches/recent-matches.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 
+import {AuthGuard} from './auth/auth.guard';
 
 const appRoutes:Routes = [
-  {path: '', redirectTo:'/matches', pathMatch:'full'},
-  {path: 'matches/:matchId', component:MatchDetailComponent, data: {title: 'Matches'}},
-  {path: 'matches', component:RecentMatchesComponent, data: {title:'Player Recent Matches'}},
-  {path: 'heroes', component:HeroesComponent, data: {title: 'Heroes'}},
-  // {path: 'heroes/:heroId', component:HeroesComponent},
-  // {path: 'heroes/:heroId', component:HeroDetailComponent}
-  {path: 'items', component:ItemsComponent, data: {title: 'Items'}},
-  {path: 'player/heroes', component:PlayerHeroesComponent, data: {title: 'Player Heroes'}},
-  {path: 'player/activity', component:PlayerActivityComponent, data: {title: 'Player Activity'}},
-  {path: 'login', component:LoginPageComponent}
+
+  {
+    path: "", 
+    canActivate: [AuthGuard], 
+    children: [
+            
+      {path: '', redirectTo:'/matches', pathMatch:'full'},
+      {path: 'matches/:matchId', component:MatchDetailComponent, data: {title: 'Matches'}},
+      {path: 'matches', component:RecentMatchesComponent, data: {title:'Player Recent Matches'}},
+      {path: 'heroes', component:HeroesComponent, data: {title: 'Heroes'}},
+      // {path: 'heroes/:heroId', component:HeroesComponent},
+      // {path: 'heroes/:heroId', component:HeroDetailComponent}
+      {path: 'items', component:ItemsComponent, data: {title: 'Items'}},
+      {path: 'player/heroes', component:PlayerHeroesComponent, data: {title: 'Player Heroes'}},
+      {path: 'player/activity', component:PlayerActivityComponent, data: {title: 'Player Activity'}}
+    ]
+  },
+
+
+  // {path: '', redirectTo:'/matches', pathMatch:'full'},
+  // {path: 'matches/:matchId', component:MatchDetailComponent, data: {title: 'Matches'}},
+  // {path: 'matches', component:RecentMatchesComponent, data: {title:'Player Recent Matches'}, canActivate: [AuthGuard]},
+  // {path: 'heroes', component:HeroesComponent, data: {title: 'Heroes'}},
+  // // {path: 'heroes/:heroId', component:HeroesComponent},
+  // // {path: 'heroes/:heroId', component:HeroDetailComponent}
+  // {path: 'items', component:ItemsComponent, data: {title: 'Items'}},
+  // {path: 'player/heroes', component:PlayerHeroesComponent, data: {title: 'Player Heroes'}},
+  // {path: 'player/activity', component:PlayerActivityComponent, data: {title: 'Player Activity'}},
+  {path: 'login', component:LoginPageComponent}//, canActivate: [AuthGuard]}
 ]
 
 @NgModule({
@@ -90,7 +110,7 @@ const appRoutes:Routes = [
     MatInputModule
     
   ],
-  providers: [PlayerStatsService, Constants],
+  providers: [PlayerStatsService, Constants, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

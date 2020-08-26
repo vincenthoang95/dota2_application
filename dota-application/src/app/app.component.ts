@@ -20,5 +20,12 @@ export class AppComponent {
   title = 'dota-application';
   
 
+  checkLogin(){
+    // sessionStorage.setItem("name","askdjklfdjs")
+    if (localStorage.getItem("name")){
+      return true;
+    }
+  }
+
 
 }
