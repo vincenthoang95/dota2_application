@@ -42,6 +42,7 @@ import { RecentMatchesComponent } from './recent-matches/recent-matches.componen
 import { LoginPageComponent } from './login-page/login-page.component';
 
 import {AuthGuard} from './auth/auth.guard';
+import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 
 const appRoutes:Routes = [
 
@@ -73,6 +74,8 @@ const appRoutes:Routes = [
   // {path: 'player/heroes', component:PlayerHeroesComponent, data: {title: 'Player Heroes'}},
   // {path: 'player/activity', component:PlayerActivityComponent, data: {title: 'Player Activity'}},
   {path: 'login', component:LoginPageComponent}//, canActivate: [AuthGuard]}
+  // ,{path: '**', redirectTo: '/login'}
+  ,{path: '**', component: NotFoundPageComponent}
 ]
 
 @NgModule({
@@ -95,7 +98,8 @@ const appRoutes:Routes = [
     PlayerHeroesComponent,
     PlayerActivityComponent,
     RecentMatchesComponent,
-    LoginPageComponent
+    LoginPageComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,

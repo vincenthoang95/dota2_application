@@ -11,7 +11,11 @@ export class LoginPageComponent implements OnInit {
 
   wrongCred = false;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {
+    if (localStorage.getItem("name") == "askdjklfdjs"){
+      this.router.navigate(['/matches'])
+    }
+   }
 
   ngOnInit() {
   }
