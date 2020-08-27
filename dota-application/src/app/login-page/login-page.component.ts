@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 })
 export class LoginPageComponent implements OnInit {
 
+
+  wrongCred = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -18,6 +21,9 @@ export class LoginPageComponent implements OnInit {
     if (loginForm.value.email == "vincenthoang95@gmail.com" && loginForm.value.password == "asd"){
       localStorage.setItem("name","askdjklfdjs")
       this.router.navigate(['/matches']);
+    }
+    else{
+      this.wrongCred = true
     }
   }
 

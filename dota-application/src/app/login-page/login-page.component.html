@@ -7,10 +7,12 @@
                  <span class="help-block" *ngIf="emailInput.errors?.required && emailInput.touched">Email is required</span>
                  <span class="help-block" *ngIf="emailInput.errors?.pattern && emailInput.touched">Email is invalid</span>
              </div>
-             <div class="form-group" [class.has-error]="passwordInput.invalid && passwordInput.touched">
+             <div class="form-group" [class.has-error]="wrongCred">
                  <label class="control-label">Password</label>
                  <input required type="password" class="form-control" placeholder="Password" [(ngModel)]="password" name="password" #passwordInput="ngModel">
-                 <span class="help-block" *ngIf="passwordInput.invalid && passwordInput.touched">Password is required</span>
+                 <!-- <span class="help-block" *ngIf="passwordInput.invalid && passwordInput.touched">Password is required</span> -->
+                 <span class="help-block" *ngIf="wrongCred">Incorrect email address or password</span>
+                 
              </div>
             <div disabled>
                 <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary">Submit</button>
